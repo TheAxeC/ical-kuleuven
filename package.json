@@ -1,0 +1,27 @@
+{
+  "name": "ical-kuleuven",
+  "version": "1.0.0",
+  "description": "An ical calender for courses from KULeuven",
+  "main": "main.js",
+  "dependencies": {
+    "ical-generator": "^0.2.7",
+    "jsdom": "^9.4.5",
+    "node-horseman": "^3.1.1",
+    "node-schedule": "^1.1.1",
+    "phantomjs-prebuilt": "^2.1.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ical",
+    "kuleuven"
+  ],
+  "author": "Axel Faes",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/theaxec/ical-kuleuven.git"
+  }
+}
