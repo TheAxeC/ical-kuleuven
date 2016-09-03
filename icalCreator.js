@@ -116,7 +116,8 @@ function requestPage(url, params, callback) {
 
 function canUseFile(params) {
 	var filename = getFileName('html/' + params);
-	//return fs.existsSync(filename);
+	if (!fs.existsSync(filename))
+		return false;
 	
 	var stats = fs.statSync(filename);
 
