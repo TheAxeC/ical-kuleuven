@@ -19,10 +19,11 @@ function handleRequest(request, response) {
 	}
 
 	if (filename.endsWith('.ics')) {
-		response.setHeader('Content-disposition', 'attachment; filename='+path.basename(parsedUrl.pathname));
+		response.setHeader('Content-type', 'text/calendar; charset=utf-8');
+		response.setHeader('Content-disposition', 'inline; filename='+path.basename(parsedUrl.pathname));
 	}
 	
-	response.writeHead(200, cacheHeader);
+	response.writeHead(200);
 	response.write( fs.readFileSync(filename) );
 	response.end();
 }

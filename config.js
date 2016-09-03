@@ -4,7 +4,7 @@ var config = {}
 config.cron = '59 23 * * *';
 config.ttl_ical = 60*60;
 
-config.port = 8080
+config.port = 8008;
 
 config.url = 'http://www.kuleuven.be/sapredir/uurrooster/keuze_studiejaar.htm';
 config.year_url =  'SEL_JAAR=';
