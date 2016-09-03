@@ -266,7 +266,8 @@ function parseSingle(c, year, courseID, calender, window) {
 			start: start,
 			end: end,
 			summary: name,
-			description: description + '\n\n' + prof
+			description: description + '\n\n' + prof,
+			timezone: 'Europe/Brussels'
 		});
 	}
 }
