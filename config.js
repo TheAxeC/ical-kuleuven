@@ -2,6 +2,7 @@
 
 var config = {}
 config.cron = '59 23 * * *';
+config.ttl_ical = 60*60;
 
 config.port = 8080
 
