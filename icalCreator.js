@@ -164,7 +164,10 @@ function parseSingleUser(user, courses, htmlMap) {
 	var len = Object.keys(courses).length;
 	console.log('icalCreator:parseSingleUser : Parsing user "' + user + '" ' + len);
 
-	var calender = ical(); //.ttl(config.ttl_ical);
+	var calender = ical({
+	        name: 'KULeuven - courses',
+	        timezone: 'Europe/Brussels'
+	    }); //.ttl(config.ttl_ical);
 	parseHandler(Object.keys(courses), htmlMap, courses, calender, function() {
 		calender.save('icals/' + user + '.ics');
 	});
