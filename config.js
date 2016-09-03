@@ -12,7 +12,7 @@ config.phase_url = 'STUDIEJAAR=';
 config.id_url = 'OBJID_SC=';
 
 config.users = {
-	'axel4' : {
+	'axel' : {
 		'51230411-2016-1-1' : [
 		 					'G0Q57a',
 		 					'H01F2A',

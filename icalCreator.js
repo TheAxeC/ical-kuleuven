@@ -261,6 +261,7 @@ function parseSingle(c, year, courseID, calender, window) {
 		var start = new Date(year, month-1, day, beginHour, beginMin, 0, 0);
 		var end = new Date(year, month-1, day, endHour, endMin, 0, 0);
 
+		console.log(start)
 		//console.log('icalCreator:parsePage : Adding event: ' + c + ' ' + i);
 		calender.createEvent({
 			start: start,
