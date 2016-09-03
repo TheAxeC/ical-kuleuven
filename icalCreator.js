@@ -167,7 +167,18 @@ function parseSingleUser(user, courses, htmlMap) {
 	var calender = ical({
 	        name: 'KULeuven - courses',
 	        timezone: 'Europe/Brussels'
-	    }); //.ttl(config.ttl_ical);
+	    });
+	calender.ttl(config.ttl_ical);
+	calender.prodId('-//AxelFaes//KULeuven_personal_calendar//EN');
+	calender.method('PUBLISH')
+
+// new_ical["PRODID"] = "-//VincentDrozdzyniak/UHasselt_personal_calendar//EN"
+// new_ical["CALSCALE"] = "GREGORIAN"
+// new_ical["METHOD"] = "PUBLISH"
+// new_ical["X-WR-CALNAME"] = "UHasselt uurrooster"
+// new_ical["X-WR-TIMEZONE"] = "Europe/Brussels"
+// new_ical["X-PUBLISHED-TTL"] = "PT1H"  # Update interval.
+
 	parseHandler(Object.keys(courses), htmlMap, courses, calender, function() {
 		calender.save('icals/' + user + '.ics');
 	});
