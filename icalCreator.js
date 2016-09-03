@@ -171,9 +171,6 @@ function parseSingleUser(user, courses, htmlMap) {
 	calender.ttl(config.ttl_ical);
 	calender.prodId('//AxelFaes//KULeuven_personal_calendar//EN');
 
-// new_ical["CALSCALE"] = "GREGORIAN"
-// new_ical["X-PUBLISHED-TTL"] = "PT1H"  # Update interval.
-
 	parseHandler(Object.keys(courses), htmlMap, courses, calender, function() {
 		calender.save('icals/' + user + '.ics');
 	});
@@ -261,14 +258,12 @@ function parseSingle(c, year, courseID, calender, window) {
 		var start = new Date(year, month-1, day, beginHour, beginMin, 0, 0);
 		var end = new Date(year, month-1, day, endHour, endMin, 0, 0);
 
-		console.log(start)
-		//console.log('icalCreator:parsePage : Adding event: ' + c + ' ' + i);
 		calender.createEvent({
 			start: start,
 			end: end,
 			summary: name,
 			description: description + '\n\n' + prof,
-			timezone: 'Europe/Brussels'
+			//timezone: 'Europe/Brussels'
 		});
 	}
 }
