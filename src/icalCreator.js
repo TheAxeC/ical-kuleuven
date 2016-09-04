@@ -196,7 +196,7 @@ function parsePage(pageID, page, courses, calender, callback) {
 	
 	jsdom.env({
 		html : page,
-		scripts : ["jquery.js"],
+		scripts : ["src/jquery/jquery.js"],
 		done : function (err, window) {
 			for(var c of courses) {
 				// Find the element
