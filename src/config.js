@@ -23,9 +23,3 @@ config.users = {
 };
 
 module.exports = config
-
-// https://peter.verraedt.be/uurrooster_kuleuven
-// https://github.com/mosterdt/kulender
-// http://www.horsemanjs.org/
-// https://github.com/johntitus/node-horseman
-// https://github.com/johntitus/node-horseman/issues/106
