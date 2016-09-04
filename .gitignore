@@ -40,3 +40,5 @@ jspm_packages
 
 html/*.html
 icals/*.ics
+
+src/google_calendar/secrets/*.json

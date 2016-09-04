@@ -1,7 +1,7 @@
 var schedule = require('node-schedule')
 
-var config = require('./config');
-var icalCreator = require('./icalCreator');
+var config = require('../ical/config');
+var icalCreator = require('../ical/icalCreator');
 var server = require('./server')
 
 // Create calender and start scheduler

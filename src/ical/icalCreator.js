@@ -7,24 +7,24 @@ var config = require('./config');
 
 // Main entry point
 // Load all pages from the website
-function loadPages(parsingCallback) {
+function loadPages(parsingCallback, callback) {
 	console.log('icalCreator:loadPages : loading all pages');
 	var pages = getPagesList();
 	console.log('icalCreator:loadPages : page list: ' + JSON.stringify(pages));
-	requestHandler(pages, parsingCallback, {});
+	requestHandler(pages, parsingCallback, {}, callback);
 }
 
 // Requesthandler: load each url in a synchronous way
-function requestHandler(urls, parsingCallback, htmlMap) {
+function requestHandler(urls, parsingCallback, htmlMap, callback) {
 	console.log('icalCreator:requestHandler : remaining length: ' + Object.keys(urls).length);
 	if (Object.keys(urls).length == 0) {
-		parsingCallback(htmlMap);
+		parsingCallback(htmlMap, callback);
 	} else {
 		var firstKey = Object.keys(urls)[0];
 		requestPage(urls[firstKey], firstKey, function(html) {
 			htmlMap[firstKey] = html;
 			delete urls[firstKey];
-			requestHandler(urls, parsingCallback, htmlMap);
+			requestHandler(urls, parsingCallback, htmlMap, callback);
 		});
 	}
 }
@@ -153,15 +153,15 @@ function getFileName(params) {
 	return filename;
 }
 
-function parseUsers(htmlMap) {
+function parseUsers(htmlMap, callback) {
 	console.log();
 	console.log('icalCreator:parseUsers : Parsing all users');
 	for(var key in config.users) {
-		parseSingleUser(key, config.users[key], htmlMap);
+		parseSingleUser(key, config.users[key], htmlMap, callback);
 	}
 }
 
-function parseSingleUser(user, courses, htmlMap) {
+function parseSingleUser(user, courses, htmlMap, callback) {
 	var len = Object.keys(courses).length;
 	console.log('icalCreator:parseSingleUser : Parsing user "' + user + '" ' + len);
 
@@ -174,6 +174,7 @@ function parseSingleUser(user, courses, htmlMap) {
 
 	parseHandler(Object.keys(courses), htmlMap, courses, calender, function() {
 		calender.save('icals/' + user + '.ics');
+		callback(calender);
 	});
 }
 
@@ -196,7 +197,7 @@ function parsePage(pageID, page, courses, calender, callback) {
 	
 	jsdom.env({
 		html : page,
-		scripts : ["src/jquery/jquery.js"],
+		scripts : ["src/ical/jquery/jquery.js"],
 		done : function (err, window) {
 			for(var c of courses) {
 				// Find the element
@@ -263,13 +264,21 @@ function parseSingle(c, year, courseID, calender, window) {
 			start: start,
 			end: end,
 			summary: name,
-			description: description + '\n\n' + prof,
-			//timezone: 'Europe/Brussels'
+			location: description,
+			description: prof
 		});
 	}
 }
 
-module.exports.createSchedule = function() {
-	loadPages(parseUsers);
+module.exports.createSchedule = function(callback) {
+	if (!callback) {
+		loadPages(parseUsers, function(calendar) {});
+	} else {
+		loadPages(parseUsers, callback);
+	}
 }
+
+
+
+
 

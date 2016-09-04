@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var urlparser = require('url');
 
-var config = require('./config')
+var config = require('../ical/config')
 
 function canServe(filename, request) {
 	return( request.method === "GET" && (filename.indexOf(__dirname) === 0) && fs.existsSync(filename) && fs.statSync(filename).isFile() );

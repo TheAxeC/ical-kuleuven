@@ -4,6 +4,8 @@
   "description": "An ical calender for courses from KULeuven",
   "main": "main.js",
   "dependencies": {
+    "google-auth-library": "^0.9.8",
+    "googleapis": "^12.4.0",
     "ical-generator": "^0.2.7",
     "jsdom": "^9.4.5",
     "node-horseman": "^3.1.1",
