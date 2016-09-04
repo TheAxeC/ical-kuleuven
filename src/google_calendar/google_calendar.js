@@ -94,13 +94,15 @@ function deleteAllEvents(auth, callback) {
 		auth: auth,
 		calendarId: config.CALENDAR_ID,
 		singleEvents: true,
-		orderBy: 'startTime'
+		orderBy: 'startTime',
+		maxResults: 1000
 	}, function(err, response) {
 		if (err) {
 			console.log('The API (LIST EVENTS) returned an error: ' + err);
 			return;
 		}
 		var events = response.items;
+		console.log('Deleting ' + events.length + ' items')
 		for (var i = 0; i < events.length; i++) {
 			var event = events[i];
 			var delay = i * 350;
