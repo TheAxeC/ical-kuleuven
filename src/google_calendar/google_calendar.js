@@ -48,6 +48,7 @@ function prepareNewCalendar(calendar, auth) {
 function addAllEvents(calendar, auth) {
 	var events = calendar.events();
 	i = 0;
+	console.log('Adding ' + events.length + ' items');
 	for(var event of events) {
 		var delay = i * 350;
 		setTimeout(eventTimeout(event, auth, addEvent), delay);
@@ -82,8 +83,6 @@ function addEvent(event, auth) {
 		if (err) {
 			console.log('The API (INSERT) returned an error: ' + err);
 			return;
-		} else {
-			//console.log('Event inserted: ' + json.summary + ' --> ' + json.start);
 		}
 	});
 }
@@ -102,7 +101,7 @@ function deleteAllEvents(auth, callback) {
 			return;
 		}
 		var events = response.items;
-		console.log('Deleting ' + events.length + ' items')
+		console.log('Deleting ' + events.length + ' items');
 		for (var i = 0; i < events.length; i++) {
 			var event = events[i];
 			var delay = i * 350;

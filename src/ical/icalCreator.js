@@ -10,7 +10,7 @@ var config = require('./config');
 function loadPages(parsingCallback, callback) {
 	console.log('icalCreator:loadPages : loading all pages');
 	var pages = getPagesList();
-	console.log('icalCreator:loadPages : page list: ' + JSON.stringify(pages));
+	//console.log('icalCreator:loadPages : page list: ' + JSON.stringify(pages));
 	requestHandler(pages, parsingCallback, {}, callback);
 }
 
@@ -271,6 +271,9 @@ function parseSingle(c, year, courseID, calender, window) {
 }
 
 module.exports.createSchedule = function(callback) {
+	console.log('-----------------------------------------------------------------------');
+	console.log(new Date());
+	console.log();
 	if (!callback) {
 		loadPages(parseUsers, function(calendar) {});
 	} else {
