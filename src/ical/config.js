@@ -11,14 +11,28 @@ config.id_url = 'OBJID_SC=';
 
 config.users = {
 	'theaxec' : {
-		'51230411-2016-1-1' : ['G0Q57a', 'H01F2A', 'H04I4A', 'G0B23A', 'H02C1A', 'H04K5A', 'H04H8A', 'G0Q58a', 'H01F3A', 'H04I5A', 'H04I6A','G0B24A', 'G0B25A', 'H00G6A', 'H04K6A', 'H04H9A'],
-		'51230411-2016-1-2' : ['H01L1A', 'H09B5A', 'H04E0A', 'H02A8A', 'H01L2A', 'H09B6A', 'H02K8A', 'H00G7A', 'H02C3A'],
-		//'51230411-2016-2-2' : ['H05D9A', 'H05D0A'],
-		'51016880-2016-1-1' : ['H02B3A', 'H00G2A'],
-		'51016880-2016-1-2' : ['H08M0A', 'H08M1A', 'H02H6A']
-
-		// '51230411-2017-2-1' : ['H04L5A', 'H05N0A', 'H03F9A', 'H03F0B', 'H02D1A'],
-		// '51230411-2017-2-2' : [ 'G0U12B', 'G0O00A', 'H05N0A', 'H04G4A']
+		'51230411-2016-1-1' : [
+								'H01F2A', 'H01F3A', // Bedrijfskunde & Entrepreneurship
+								'G0Q57a', 'G0Q58a', // Modellering en simulatie
+								'H04I4A', 'H04I5A', 'H04I6A', // Gedistribueerde systemen
+								'G0B23A', 'G0B24A', 'G0B25A', // Modellering van complexe systemen
+								'H00G6A', 'H02C1A', // Machine Learning and Inductive Inference
+								'H00H2A', 'H02D2A', 'H08M4A' // Uncertainty in Artificial Intelligence
+							],
+		'51230411-2016-1-2' : [
+								'H01L1A', 'H01L2A', // Digitale elektronica en processoren
+								'H09B5A', 'H09B6A', // Software architectuur
+								'G0O01A', 'G0O02A', 'G0O00A', // Statistische modellen & data-analyse
+								'H02A8A', 'H02K8A', // Advanced Programming Languages for A.I.
+								'H00G7A', 'H02C3A' // Knowledge representation
+							],
+		'51016880-2016-1-1' : [
+								'H02B3A', 'H00G2A' // Neural computing  
+							],  
+		'51016880-2016-1-2' : [
+								'H08M0A', 'H08M1A', // Brain-computer interfaces
+								'H02H6A' // Bio-informatics
+							]
 	}
 };
 
