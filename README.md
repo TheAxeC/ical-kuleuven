@@ -2,17 +2,10 @@
 
 An nodejs application to create an iCalendar file for KULeuven (University of Leuven).
 
-A builtin scheduler will refresh the iCalendar file daily.
-A builtin server can serve the files.
-
 Creating the ical file can be done by running:
 ``` node src/ical/create_ical.js ```
 
-Running the scheduler and server can be done by running:
-``` node src/server/main.js ```
-
-
-It is also possible to use the google API to immediately insert events.
+It is possible to use the google API to immediately insert events.
 This can be done by running:
 ``` node src/google_calendar/create.js ```
 
