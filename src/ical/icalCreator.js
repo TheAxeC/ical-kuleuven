@@ -174,7 +174,7 @@ function parseSingleUser(user, courses, htmlMap, callback) {
 
 	parseHandler(Object.keys(courses), htmlMap, courses, calender, function() {
 		calender.save('icals/' + user + '.ics');
-		callback(calender);
+		callback(user, calender);
 	});
 }
 
@@ -275,7 +275,7 @@ module.exports.createSchedule = function(callback) {
 	console.log(new Date());
 	console.log();
 	if (!callback) {
-		loadPages(parseUsers, function(calendar) {});
+		loadPages(parseUsers, function(user, calendar) {});
 	} else {
 		loadPages(parseUsers, callback);
 	}

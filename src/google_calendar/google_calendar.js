@@ -4,7 +4,11 @@ var google = require('googleapis');
 var config = require('./config');
 var authorize = require('./authorize');
 
-function sendEvents(calendar) {
+function sendEvents(user, calendar) {
+	if (!(user in config.CALENDAR_ID)) {
+		console.log('User: ' + user + ' does not have a CALENDAR_ID');
+		return;
+	}
 	// Load client secrets from a local file.
 	fs.readFile(config.CLIENT_SECRET, function(err, content) {
 		if (err) {
@@ -14,7 +18,7 @@ function sendEvents(calendar) {
 		// Authorize a client with the loaded credentials, then call the
 		// Google Calendar API.
 		authorize.authorize(JSON.parse(content), function(auth) {
-			prepareNewCalendar(calendar, auth);
+			prepareNewCalendar(user, calendar, auth);
 		});
 	});
 }
@@ -37,11 +41,11 @@ function createSchedule() {
 	icalCreator.createSchedule(sendEvents);
 }
 
-function prepareNewCalendar(calendar, auth) {
+function prepareNewCalendar(user, calendar, auth) {
 	console.log('Deleting all events');
-	deleteAllEvents(auth, function() {
+	deleteAllEvents(user, auth, function() {
 		console.log('Adding all events');
-		addAllEvents(calendar, auth);
+		addAllEvents(user, calendar, auth);
 	});
 }
 
@@ -51,23 +55,23 @@ function addAllEvents(calendar, auth) {
 	console.log('Adding ' + events.length + ' items');
 	for(var event of events) {
 		var delay = i * 350;
-		setTimeout(eventTimeout(event, auth, addEvent), delay);
+		setTimeout(eventTimeout(user, event, auth, addEvent), delay);
 		i += 1;
 	}
 }
 
-function eventTimeout(event, auth, func) {
+function eventTimeout(user, event, auth, func) {
 	return function() {
 		func(event, auth);
 	}
 }
 
-function addEvent(event, auth) {
+function addEvent(user, event, auth) {
 	var json = event.toJSON();
 	var calendar = google.calendar('v3');
 	calendar.events.insert({
 		auth: auth,
-		calendarId: config.CALENDAR_ID,
+		calendarId: config.CALENDAR_ID[user],
 		resource: {
 			'summary': json.summary,
 			'location': json.location,
@@ -87,11 +91,11 @@ function addEvent(event, auth) {
 	});
 }
 
-function deleteAllEvents(auth, callback) {
+function deleteAllEvents(user, auth, callback) {
 	var calendar = google.calendar('v3');
 	calendar.events.list({
 		auth: auth,
-		calendarId: config.CALENDAR_ID,
+		calendarId: config.CALENDAR_ID[user],
 		singleEvents: true,
 		orderBy: 'startTime',
 		maxResults: 1000
@@ -105,17 +109,17 @@ function deleteAllEvents(auth, callback) {
 		for (var i = 0; i < events.length; i++) {
 			var event = events[i];
 			var delay = i * 350;
-			setTimeout(eventTimeout(event, auth, deleteEvent), delay);
+			setTimeout(eventTimeout(user, event, auth, deleteEvent), delay);
 		}
 		setTimeout(callback, (events.length+10)*350);
 	});
 }
 
-function deleteEvent(event, auth) {
+function deleteEvent(user, event, auth) {
 	var calendar = google.calendar('v3');
 	calendar.events.delete({
 		auth: auth,
-		calendarId: config.CALENDAR_ID,
+		calendarId: config.CALENDAR_ID[user],
 		eventId: event.id
 	}, function(err, response) {
 		if (err) {
