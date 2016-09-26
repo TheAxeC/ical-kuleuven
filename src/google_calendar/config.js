@@ -1,5 +1,5 @@
 var SCOPES = ['https://www.googleapis.com/auth/calendar'];
-var TOKEN_DIR = './src/google_calendar/secrets/';
+var TOKEN_DIR = __dirname + '/secrets/';
 var TOKEN_PATH = TOKEN_DIR + 'token.json';
 var CLIENT_SECRET = TOKEN_DIR + 'client_secret.json';
 

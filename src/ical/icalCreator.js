@@ -52,7 +52,7 @@ function requestPage(url, params, callback) {
 
 	if (canUseFile(params)) {
 		console.log('icalCreator:requestPage:horseman : loaded page through FILE');
-		readFile(getFileName('html/' + params), function(page) {
+		readFile(getFileName(__dirname + '/../../html/' + params), function(page) {
 			callback(page);
 		});
 		return;
@@ -86,7 +86,7 @@ function requestPage(url, params, callback) {
 	        // Now we need to parse the page
 	        console.log('icalCreator:requestPage:horseman : loaded page through HTTP');
 	        //parsePage(page, courses);
-	        writeFile('html/' + params, page);
+	        writeFile(__dirname + '/../../html/' + params, page);
 	        callback(page);
 	    }).close();
     } else {
@@ -107,7 +107,7 @@ function requestPage(url, params, callback) {
 	        // Now we need to parse the page
 	        console.log('icalCreator:requestPage:horseman : loaded page through HTTP');
 	        //parsePage(page, courses);
-	        writeFile('html/' + params, page);
+	        writeFile(__dirname + '/../../html/' + params, page);
 	        callback(page);
 	    }).close();
     }
@@ -115,7 +115,12 @@ function requestPage(url, params, callback) {
 }
 
 function canUseFile(params) {
-	var filename = getFileName('html/' + params);
+	var dir = __dirname + '/../../html/';
+	var filename = getFileName(dir + params);
+	if (!fs.existsSync(dir)){
+		fs.mkdirSync(dir);
+	}
+
 	if (!fs.existsSync(filename))
 		return false;
 	
@@ -128,12 +133,6 @@ function canUseFile(params) {
 
 function writeFile(params, data) {
 	url = getFileName(params);
-	// fs.writeFile(url, data, function(err) {
-	// 	if(err) {
-	// 		return console.log(err);
-	// 	}
-	// 	console.log("The file \"" + url + "\" was saved!");
-	// }); 
 	return fs.writeFileSync(url, data);
 }
 
@@ -147,11 +146,7 @@ function readFile(filename, callback) {
 }
 
 function getFileName(params) {
-	var filename = params;
-	//var d = new Date();
-	//filename += '_' + d.getUTCDate() + '_' + d.getUTCMonth() 
-	filename += '.html';
-	return filename;
+	return params + '.html';
 }
 
 function parseUsers(htmlMap, callback) {
@@ -174,7 +169,11 @@ function parseSingleUser(user, courses, htmlMap, callback) {
 	calender.prodId('//AxelFaes//KULeuven_personal_calendar//EN');
 
 	parseHandler(Object.keys(courses), htmlMap, courses, calender, function() {
-		calender.save('icals/' + user + '.ics');
+		var dir = __dirname + '/../../icals/';
+		if (!fs.existsSync(dir)){
+			fs.mkdirSync(dir);
+		}
+		calender.save(dir + user + '.ics');
 		callback(user, calender);
 	});
 }
@@ -198,7 +197,7 @@ function parsePage(pageID, page, courses, calender, callback) {
 	
 	jsdom.env({
 		html : page,
-		scripts : ["src/ical/jquery/jquery.js"],
+		scripts : [__dirname + "/jquery/jquery.js"],
 		done : function (err, window) {
 			for(var c of courses) {
 				// Find the element
