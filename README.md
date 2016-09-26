@@ -2,6 +2,8 @@
 
 An nodejs application to create an iCalendar file for KULeuven (University of Leuven).
 
+Dependencies can be installed by running ` npm install ` from the root directory.
+
 Creating the ical file can be done by running:
 ``` node src/ical/create_ical.js ```
 
