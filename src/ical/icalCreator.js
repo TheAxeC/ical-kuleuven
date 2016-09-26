@@ -128,12 +128,13 @@ function canUseFile(params) {
 
 function writeFile(params, data) {
 	url = getFileName(params);
-	fs.writeFile(url, data, function(err) {
-		if(err) {
-			return console.log(err);
-		}
-		console.log("The file \"" + url + "\" was saved!");
-	}); 
+	// fs.writeFile(url, data, function(err) {
+	// 	if(err) {
+	// 		return console.log(err);
+	// 	}
+	// 	console.log("The file \"" + url + "\" was saved!");
+	// }); 
+	return fs.writeFileSync(url, data);
 }
 
 function readFile(filename, callback) {

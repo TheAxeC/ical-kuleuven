@@ -21,7 +21,7 @@
     "kuleuven"
   ],
   "author": "Axel Faes",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/theaxec/ical-kuleuven.git"

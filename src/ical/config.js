@@ -22,9 +22,9 @@ config.users = {
 		'51230411-2016-1-2' : [
 								'H01L1A', 'H01L2A', // Digitale elektronica en processoren
 								'H09B5A', 'H09B6A', // Software architectuur
-								'G0O01A', 'G0O02A', 'G0O00A', // Statistische modellen & data-analyse
+								'H09P5A', 'H09P8A', 'H0T37A', 'H0T38A', // Engineering & Entrepreneurship
+								'G0B01A', // Intellectual Property Management
 								'H02A8A', 'H02K8A', // Advanced Programming Languages for A.I.
-								'H00G7A', 'H02C3A' // Knowledge representation
 							],
 		'51016880-2016-1-1' : [
 								'H02B3A', 'H00G2A' // Neural computing  
