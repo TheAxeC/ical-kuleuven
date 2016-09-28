@@ -32,6 +32,13 @@ config.users = {
 		'51016880-2016-1-2' : [
 								'H08M0A', 'H08M1A', // Brain-computer interfaces
 								'H02H6A' // Bio-informatics
+							],
+		'52364422-2016-1-1' : [
+								'H0N05A', 'H0N06A', 'H0N07A', // Modelling of Complex Systems
+								'H0N08A', 'H0N09A', 'H0N10A' // Distributed Systems
+							],
+		'52364422-2016-1-2' : [
+								'H07Z9A', 'H0S00A' // Software Architecture
 							]
 	}
 };
