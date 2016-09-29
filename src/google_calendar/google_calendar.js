@@ -49,7 +49,7 @@ function prepareNewCalendar(user, calendar, auth) {
 	});
 }
 
-function addAllEvents(calendar, auth) {
+function addAllEvents(user, calendar, auth) {
 	var events = calendar.events();
 	i = 0;
 	console.log('Adding ' + events.length + ' items');
@@ -62,7 +62,7 @@ function addAllEvents(calendar, auth) {
 
 function eventTimeout(user, event, auth, func) {
 	return function() {
-		func(event, auth);
+		func(user, event, auth);
 	}
 }
 

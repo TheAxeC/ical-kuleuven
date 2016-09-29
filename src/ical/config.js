@@ -10,7 +10,7 @@ config.phase_url = 'STUDIEJAAR=';
 config.id_url = 'OBJID_SC=';
 
 config.users = {
-	'theaxec' : {
+	'axel' : {
 		'51230411-2016-1-1' : [
 								'H01F2A', 'H01F3A', // Bedrijfskunde & Entrepreneurship
 								'G0Q57a', 'G0Q58a', // Modellering en simulatie
