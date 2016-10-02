@@ -1,8 +1,10 @@
-var fs = require('fs');
-var readline = require('readline');
-var googleAuth = require('google-auth-library');
+"use strict";
 
-var config = require('./config');
+let fs = require('fs');
+let readline = require('readline');
+let googleAuth = require('google-auth-library');
+
+let config = require('./config');
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -12,11 +14,11 @@ var config = require('./config');
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-	var clientSecret = credentials.installed.client_secret;
-	var clientId = credentials.installed.client_id;
-	var redirectUrl = credentials.installed.redirect_uris[0];
-	var auth = new googleAuth();
-	var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
+	let clientSecret = credentials.installed.client_secret;
+	let clientId = credentials.installed.client_id;
+	let redirectUrl = credentials.installed.redirect_uris[0];
+	let auth = new googleAuth();
+	let oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
 	// Check if we have previously stored a token.
 	fs.readFile(config.TOKEN_PATH, function(err, token) {
@@ -38,12 +40,12 @@ function authorize(credentials, callback) {
  *     client.
  */
 function getNewToken(oauth2Client, callback) {
-	var authUrl = oauth2Client.generateAuthUrl({
+	let authUrl = oauth2Client.generateAuthUrl({
 		access_type: 'offline',
 		scope: config.SCOPES
 	});
 	console.log('Authorize this app by visiting this url: ', authUrl);
-	var rl = readline.createInterface({
+	let rl = readline.createInterface({
 		input: process.stdin,
 		output: process.stdout
 	});

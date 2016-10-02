@@ -1,15 +1,17 @@
-var fs = require('fs');
-var Horseman = require('node-horseman');
-var jsdom = require("jsdom");
-var ical = require('ical-generator');
+"use strict";
 
-var config = require('./config');
+let fs = require('fs');
+let Horseman = require('node-horseman');
+let jsdom = require("jsdom");
+let ical = require('ical-generator');
+
+let config = require('./config');
 
 // Main entry point
 // Load all pages from the website
 function loadPages(parsingCallback, callback) {
 	console.log('icalCreator:loadPages : loading all pages');
-	var pages = getPagesList();
+	let pages = getPagesList();
 	//console.log('icalCreator:loadPages : page list: ' + JSON.stringify(pages));
 	requestHandler(pages, parsingCallback, {}, callback);
 }
@@ -20,7 +22,7 @@ function requestHandler(urls, parsingCallback, htmlMap, callback) {
 	if (Object.keys(urls).length == 0) {
 		parsingCallback(htmlMap, callback);
 	} else {
-		var firstKey = Object.keys(urls)[0];
+		let firstKey = Object.keys(urls)[0];
 		requestPage(urls[firstKey], firstKey, function(html) {
 			htmlMap[firstKey] = html;
 			delete urls[firstKey];
@@ -32,11 +34,11 @@ function requestHandler(urls, parsingCallback, htmlMap, callback) {
 // Get a list of all urls
 function getPagesList() {
 	console.log('icalCreator:getPagesList : list all urls');
-	var pages = {}
-	for(var key in config.users) {
-		var courses = config.users[key];
-		for(var key in courses) {
-			var url = config.url + '?TAAL=N&' + config.id_url + key.split('-')[0] + '&'
+	let pages = {}
+	for(let key in config.users) {
+		let courses = config.users[key];
+		for(let key in courses) {
+			let url = config.url + '?TAAL=N&' + config.id_url + key.split('-')[0] + '&'
 										+ config.year_url + key.split('-')[1] + '&'
 										+ config.phase_url + key.split('-')[2];
 			pages[key] = url;
@@ -58,65 +60,41 @@ function requestPage(url, params, callback) {
 		return;
 	}
 
-	var horseman = new Horseman({
+	let horseman = new Horseman({
         timeout: 100000
     });
 
-    if (params.split('-')[3] == '2') {
-		horseman
-	    .open(url)
-	    .status()
-	    .evaluate(function() { Laden(); })
-	    .waitForNextPage()
-	    .click('a[href="javascript:semester()"]')
-	    .waitForNextPage()
-	    .evaluate(function() { Laden(); })
-	    .waitForNextPage()
-		.evaluate(function() { document.continueform.submit(); })
-	    .waitForNextPage()
-	    .click('a[href="javascript:semester(\'' + params.split('-')[3] + '\');"]')
-	    .waitForNextPage()
-	    .evaluate(function() { Laden(); })
-	    .waitForNextPage()
-		.evaluate(function() { document.continueform.submit(); })
-	    .waitForNextPage()
-		.html()
-	    .then(function (page) {
-	        // We retrieved the page correctly
-	        // Now we need to parse the page
-	        console.log('icalCreator:requestPage:horseman : loaded page through HTTP');
-	        //parsePage(page, courses);
-	        writeFile(__dirname + '/../../html/' + params, page);
-	        callback(page);
-	    }).close();
-    } else {
-		horseman
-	    .open(url)
-	    .status()
-	    .evaluate(function() { Laden(); })
-	    .waitForNextPage()
-	    .click('a[href="javascript:semester()"]')
-	    .waitForNextPage()
-	    .evaluate(function() { Laden(); })
-	    .waitForNextPage()
-		.evaluate(function() { document.continueform.submit(); })
-	    .waitForNextPage()
-		.html()
-	    .then(function (page) {
-	        // We retrieved the page correctly
-	        // Now we need to parse the page
-	        console.log('icalCreator:requestPage:horseman : loaded page through HTTP');
-	        //parsePage(page, courses);
-	        writeFile(__dirname + '/../../html/' + params, page);
-	        callback(page);
-	    }).close();
-    }
-	
+	horseman
+	.open(url)
+	.status()
+	.evaluate(function() { Laden(); })
+	.waitForNextPage()
+	.click('a[href="javascript:semester()"]')
+	.waitForNextPage()
+	.evaluate(function() { Laden(); })
+	.waitForNextPage()
+	.evaluate(function() { document.continueform.submit(); })
+	.waitForNextPage()
+	.click('a[href="javascript:semester(\'' + params.split('-')[3] + '\');"]')
+	.waitForNextPage()
+	.evaluate(function() { Laden(); })
+	.waitForNextPage()
+	.evaluate(function() { document.continueform.submit(); })
+	.waitForNextPage()
+	.html()
+	.then(function (page) {
+		// We retrieved the page correctly
+		// Now we need to parse the page
+		console.log('icalCreator:requestPage:horseman : loaded page through HTTP');
+		//parsePage(page, courses);
+		writeFile(__dirname + '/../../html/' + params, page);
+		callback(page);
+	}).close();
 }
 
 function canUseFile(params) {
-	var dir = __dirname + '/../../html/';
-	var filename = getFileName(dir + params);
+	let dir = __dirname + '/../../html/';
+	let filename = getFileName(dir + params);
 	if (!fs.existsSync(dir)){
 		fs.mkdirSync(dir);
 	}
@@ -124,15 +102,15 @@ function canUseFile(params) {
 	if (!fs.existsSync(filename))
 		return false;
 	
-	var stats = fs.statSync(filename);
+	let stats = fs.statSync(filename);
 
-	var now = new Date().getTime();
-	var endTime = new Date(stats.ctime).getTime() + (1000*60*60*24);
+	let now = new Date().getTime();
+	let endTime = new Date(stats.ctime).getTime() + (1000*60*60*24);
 	return endTime > now;
 }
 
 function writeFile(params, data) {
-	url = getFileName(params);
+	let url = getFileName(params);
 	return fs.writeFileSync(url, data);
 }
 
@@ -152,29 +130,31 @@ function getFileName(params) {
 function parseUsers(htmlMap, callback) {
 	console.log();
 	console.log('icalCreator:parseUsers : Parsing all users');
-	var i = 0;
-	for(var key in config.users) {
+	let i = 0;
+	for(let key in config.users) {
 		setTimeout(parseSingleUser, 10000*i, key, config.users[key], htmlMap, callback);
 		i += 1;
 	}
 }
 
 function parseSingleUser(user, courses, htmlMap, callback) {
-	var len = Object.keys(courses).length;
+	let len = Object.keys(courses).length;
 	console.log('icalCreator:parseSingleUser : Parsing user "' + user + '" ' + len);
 
-	var calender = ical({
+	let calender = ical({
 	        name: 'KULeuven - courses',
 	        timezone: 'Europe/Brussels'
 	    });
 	calender.ttl(config.ttl_ical);
 	calender.prodId('//AxelFaes//KULeuven_personal_calendar//EN');
+	calender.method('publish');
 
-	parseHandler(Object.keys(courses), htmlMap, courses, calender, function() {
-		var dir = __dirname + '/../../icals/';
+	parseHandler(user, Object.keys(courses), htmlMap, courses, calender, function() {
+		let dir = __dirname + '/../../icals/';
 		if (!fs.existsSync(dir)){
 			fs.mkdirSync(dir);
 		}
+		console.log('icalCreator:parseSingleUser : User "' + user + '" has ' + calender.events().length + ' events');
 		calender.save(dir + user + '.ics');
 		callback(user, calender);
 		if (global.gc) {
@@ -187,27 +167,27 @@ function parseSingleUser(user, courses, htmlMap, callback) {
 }
 
 // Requesthandler: load each url in a synchronous way
-function parseHandler(keys, htmlMap, courses, calender, parsingCallback) {
+function parseHandler(user, keys, htmlMap, courses, calender, parsingCallback) {
 	console.log('icalCreator:parseHandler : remaining length: ' + keys.length);
 	if (keys.length == 0) {
 		parsingCallback(htmlMap);
 	} else {
-		var firstKey = keys[0];
+		let firstKey = keys[0];
 		keys.shift();
-		parsePage(firstKey, htmlMap[firstKey], courses[firstKey], calender, function() {
-			parseHandler(keys, htmlMap, courses, calender, parsingCallback);
+		parsePage(user, firstKey, htmlMap[firstKey], courses[firstKey], calender, function() {
+			parseHandler(user, keys, htmlMap, courses, calender, parsingCallback);
 		});
 	}
 }
 
-function parsePage(pageID, page, courses, calender, callback) {
+function parsePage(user, pageID, page, courses, calender, callback) {
 	console.log('icalCreator:parsePage : starting to parse page: ' + pageID);
 	
 	jsdom.env({
 		html : page,
 		scripts : [__dirname + "/jquery/jquery.js"],
 		done : function (err, window) {
-			for(var c of courses) {
+			for(let c of courses) {
 				// Find the element
 				window.$.extend(window.$.expr[':'], {
 					'containsi': function(elem, i, match, array)
@@ -216,13 +196,13 @@ function parsePage(pageID, page, courses, calender, callback) {
 							.indexOf((match[3] || "").toLowerCase()) >= 0;
 					}
 				});
-				var courseIDList = window.$('a:containsi("' + c + '")');
-				var year = (pageID.split('-')[3] == '2') ? (parseInt(pageID.split('-')[1])+1) : pageID.split('-')[1];
+				let courseIDList = window.$('a:containsi("' + c + '")');
+				let year = (pageID.split('-')[3] == '2') ? (parseInt(pageID.split('-')[1])+1) : pageID.split('-')[1];
 				console.log('icalCreator:parsePage : found courseID ' + c + ' ' + courseIDList.length);
-				if (courseIDList.length == 1) parseSingle(c, year, courseIDList, calender, window);		
+				if (courseIDList.length == 1) parseSingle(user, c, year, courseIDList, calender, window);		
 				else {
 					courseIDList.each(function(courseID) {
-						parseSingle(c, year, window.$(this), calender, window);					
+						parseSingle(user, c, year, window.$(this), calender, window);					
 					});
 				}				
 			}
@@ -232,50 +212,64 @@ function parsePage(pageID, page, courses, calender, callback) {
 	});
 }
 
-function parseSingle(c, year, courseID, calender, window) {
+function parseSingle(user, c, year, courseID, calender, window) {
 	// a -> td -> tr -> tbody -> table
-	var table = courseID.parent().parent().parent().parent();
-	var dates = table.next().children().children().children();
+	let table = courseID.parent().parent().parent().parent();
+	let dates = table.next().children().children().children();
 
 	// print course information
-	var siblings = courseID.parent().siblings();
+	let siblings = courseID.parent().siblings();
 
-	var time = window.$(siblings[1]).text().trim();
-	var description = window.$(siblings[2]).text().trim();
-	var name = window.$(siblings[3]).text().trim();
-	var prof = window.$(siblings[4]).text().trim();
+	let time = window.$(siblings[1]).text().trim();
+	let description = window.$(siblings[2]).text().trim();
+	let name = window.$(siblings[3]).text().trim();
+	let prof = window.$(siblings[4]).text().trim();
 
-	var dateList = [];
-	for(var i=0; i<dates.length; i++) {
-		var txt = window.$(dates[i]).text().trim();
+	if (!allowEvent(user, c, name)) {
+		return;
+	}
+
+	let dateList = [];
+	for(let i=0; i<dates.length; i++) {
+		let txt = window.$(dates[i]).text().trim();
 		if (txt)
 			dateList.push(txt);
 	}
 
 	// Making ICAL format
-	for(var i=0; i<dateList.length; i++) {
-		var d = dateList[i];
-		var day = parseInt(d.split('.')[0]);
-		var month = parseInt(d.split('.')[1]);
-		var begin = time.split(' tot ')[0];
-		var end = time.split(' tot ')[1];
+	for(let i=0; i<dateList.length; i++) {
+		let d = dateList[i];
+		let day = parseInt(d.split('.')[0]);
+		let month = parseInt(d.split('.')[1]);
+		let begin = time.split(' tot ')[0];
+		let end = time.split(' tot ')[1];
 
-		var beginHour = parseInt(begin.split(':')[0]);
-		var beginMin = parseInt(begin.split(':')[1]);
-		var endHour = parseInt(end.split(':')[0]);
-		var endMin = parseInt(end.split(':')[1]);
+		let beginHour = parseInt(begin.split(':')[0]);
+		let beginMin = parseInt(begin.split(':')[1]);
+		let endHour = parseInt(end.split(':')[0]);
+		let endMin = parseInt(end.split(':')[1]);
 
-		var start = new Date(year, month-1, day, beginHour, beginMin, 0, 0);
-		var end = new Date(year, month-1, day, endHour, endMin, 0, 0);
+		let startDate = new Date(year, month-1, day, beginHour, beginMin, 0, 0);
+		let endDate = new Date(year, month-1, day, endHour, endMin, 0, 0);
 
 		calender.createEvent({
-			start: start,
-			end: end,
+			start: startDate,
+			end: endDate,
 			summary: name,
 			location: description,
-			description: prof
+			description: "courseID: " + c + "\n" + prof
 		});
 	}
+}
+
+function allowEvent(user, courseID, eventName) {
+	if (user in config.group_list) {
+		let user_group_list = config.group_list[user];
+		if (courseID in user_group_list) {
+			return eventName.includes(user_group_list[courseID])
+		}
+	}
+	return true;
 }
 
 module.exports.createSchedule = function(callback) {

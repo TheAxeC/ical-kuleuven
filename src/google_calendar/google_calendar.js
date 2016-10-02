@@ -1,3 +1,5 @@
+"use strict";
+
 var fs = require('fs');
 var google = require('googleapis');
 
@@ -37,7 +39,7 @@ function registerToken() {
 }
 
 function createSchedule() {
-	var icalCreator = require('../ical/icalCreator');
+	let icalCreator = require('../ical/icalCreator');
 	icalCreator.createSchedule(sendEvents);
 }
 
@@ -50,11 +52,11 @@ function prepareNewCalendar(user, calendar, auth) {
 }
 
 function addAllEvents(user, calendar, auth) {
-	var events = calendar.events();
-	i = 0;
+	let events = calendar.events();
+	let i = 0;
 	console.log('Adding ' + events.length + ' items');
-	for(var event of events) {
-		var delay = i * 350;
+	for(let event of events) {
+		let delay = i * 300;
 		setTimeout(eventTimeout(user, event, auth, addEvent), delay);
 		i += 1;
 	}
@@ -67,8 +69,8 @@ function eventTimeout(user, event, auth, func) {
 }
 
 function addEvent(user, event, auth) {
-	var json = event.toJSON();
-	var calendar = google.calendar('v3');
+	let json = event.toJSON();
+	let calendar = google.calendar('v3');
 	calendar.events.insert({
 		auth: auth,
 		calendarId: config.CALENDAR_ID[user],
@@ -92,7 +94,7 @@ function addEvent(user, event, auth) {
 }
 
 function deleteAllEvents(user, auth, callback) {
-	var calendar = google.calendar('v3');
+	let calendar = google.calendar('v3');
 	calendar.events.list({
 		auth: auth,
 		calendarId: config.CALENDAR_ID[user],
@@ -104,19 +106,19 @@ function deleteAllEvents(user, auth, callback) {
 			console.log('The API (LIST EVENTS) returned an error: ' + err);
 			return;
 		}
-		var events = response.items;
+		let events = response.items;
 		console.log('Deleting ' + events.length + ' items');
-		for (var i = 0; i < events.length; i++) {
-			var event = events[i];
-			var delay = i * 350;
+		for (let i = 0; i < events.length; i++) {
+			let event = events[i];
+			let delay = i * 300;
 			setTimeout(eventTimeout(user, event, auth, deleteEvent), delay);
 		}
-		setTimeout(callback, (events.length+10)*350);
+		setTimeout(callback, (events.length+10)*300);
 	});
 }
 
 function deleteEvent(user, event, auth) {
-	var calendar = google.calendar('v3');
+	let calendar = google.calendar('v3');
 	calendar.events.delete({
 		auth: auth,
 		calendarId: config.CALENDAR_ID[user],
