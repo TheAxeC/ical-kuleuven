@@ -152,8 +152,10 @@ function getFileName(params) {
 function parseUsers(htmlMap, callback) {
 	console.log();
 	console.log('icalCreator:parseUsers : Parsing all users');
+	var i = 0;
 	for(var key in config.users) {
-		parseSingleUser(key, config.users[key], htmlMap, callback);
+		setTimeout(parseSingleUser, 10000*i, key, config.users[key], htmlMap, callback);
+		i += 1;
 	}
 }
 
@@ -175,6 +177,12 @@ function parseSingleUser(user, courses, htmlMap, callback) {
 		}
 		calender.save(dir + user + '.ics');
 		callback(user, calender);
+		if (global.gc) {
+    			global.gc();
+		} else {
+    			console.log('Garbage collection unavailable.  Pass --expose-gc '
+     			 + 'when launching node to enable forced garbage collection.');
+		}
 	});
 }
 
