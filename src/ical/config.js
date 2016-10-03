@@ -12,11 +12,15 @@ config.id_url = 'OBJID_SC=';
 config.group_list = {
 	'axel' : {
 		'H00H2A' : 'Group A', // Uncertainty in Artificial Intelligence
-		'H0N06A' : '1McsB', // Modellering van complexe systemen
+		'H0N06A' : '1McsA', // Modellering van complexe systemen
 		'H0N09A' : '1McsA', // Gedistribueerde systemen
 		'G0Q58a' : 'Group A', // Modellering en simulatie
-		'H00G6A' : 'Group A' // Machine Learning and Inductive Inference
-	}	
+		'H00G6A' : 'Group B' // Machine Learning and Inductive Inference
+	},
+	'luuk' : {
+		'H0N06A' : '1McsA', // Modellering van complexe systemen
+		'H00G6A' : 'Group B' // Machine Learning and Inductive Inference	
+	}
 };
 
 config.users = {
