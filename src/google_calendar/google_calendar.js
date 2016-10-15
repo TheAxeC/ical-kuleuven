@@ -40,7 +40,7 @@ function registerToken() {
 }
 
 function createSchedule() {
-	let icalCreator = require('../ical/icalCreator');
+	let icalCreator = require('../ical/ical_creator');
 	icalCreator.createSchedule(sendEvents);
 }
 
