@@ -38,9 +38,11 @@ function getPagesList() {
 	for(let key in config.users) {
 		let courses = config.users[key];
 		for(let key in courses) {
-			let url = config.url + '?TAAL=N&' + config.id_url + key.split('-')[0] + '&'
-										+ config.year_url + key.split('-')[1] + '&'
-										+ config.phase_url + key.split('-')[2];
+			let url = 'http://www.kuleuven.be/sapredir/uurrooster/keuze_studiejaar.htm'
+			 			+ '?TAAL=N&'
+						+ 'OBJID_SC=' + key.split('-')[0] + '&'
+						+ 'SEL_JAAR=' + key.split('-')[1] + '&'
+						+ 'STUDIEJAAR=' + key.split('-')[2];
 			pages[key] = url;
 		}
 	}
@@ -101,12 +103,25 @@ function canUseFile(params) {
 
 	if (!fs.existsSync(filename))
 		return false;
-	
+
 	let stats = fs.statSync(filename);
 
 	let now = new Date().getTime();
 	let endTime = new Date(stats.ctime).getTime() + (1000*60*60*24);
 	return endTime > now;
+}
+
+function renameFile(user) {
+	let dir = __dirname + '/../../icals/';
+	let filename = dir + user + '.ics';
+	if (!fs.existsSync(dir)){
+		fs.mkdirSync(dir);
+	}
+
+	if (!fs.existsSync(filename))
+		return;
+
+	fs.renameSync(dir + user + '.ics', dir + user + '-old.ics');
 }
 
 function writeFile(params, data) {
@@ -145,7 +160,7 @@ function parseSingleUser(user, courses, htmlMap, callback) {
 	        name: 'KULeuven - courses',
 	        timezone: 'Europe/Brussels'
 	    });
-	calender.ttl(config.ttl_ical);
+	calender.ttl(60*60);
 	calender.prodId('//AxelFaes//KULeuven_personal_calendar//EN');
 	calender.method('publish');
 
@@ -155,13 +170,14 @@ function parseSingleUser(user, courses, htmlMap, callback) {
 			fs.mkdirSync(dir);
 		}
 		console.log('icalCreator:parseSingleUser : User "' + user + '" has ' + calender.events().length + ' events');
+		renameFile(user);
 		calender.save(dir + user + '.ics');
 		callback(user, calender);
 		if (global.gc) {
-    			global.gc();
+    		global.gc();
 		} else {
-    			console.log('Garbage collection unavailable.  Pass --expose-gc '
-     			 + 'when launching node to enable forced garbage collection.');
+    		console.log('Garbage collection unavailable.  Pass --expose-gc '
+     					 + 'when launching node to enable forced garbage collection.');
 		}
 	});
 }
@@ -182,7 +198,7 @@ function parseHandler(user, keys, htmlMap, courses, calender, parsingCallback) {
 
 function parsePage(user, pageID, page, courses, calender, callback) {
 	console.log('icalCreator:parsePage : starting to parse page: ' + pageID);
-	
+
 	jsdom.env({
 		html : page,
 		scripts : [__dirname + "/jquery/jquery.js"],
@@ -199,12 +215,12 @@ function parsePage(user, pageID, page, courses, calender, callback) {
 				let courseIDList = window.$('a:containsi("' + c + '")');
 				let year = (pageID.split('-')[3] == '2') ? (parseInt(pageID.split('-')[1])+1) : pageID.split('-')[1];
 				console.log('icalCreator:parsePage : found courseID ' + c + ' ' + courseIDList.length);
-				if (courseIDList.length == 1) parseSingle(user, c, year, courseIDList, calender, window);		
+				if (courseIDList.length == 1) parseSingle(user, c, year, courseIDList, calender, window);
 				else {
 					courseIDList.each(function(courseID) {
-						parseSingle(user, c, year, window.$(this), calender, window);					
+						parseSingle(user, c, year, window.$(this), calender, window);
 					});
-				}				
+				}
 			}
 			console.log('icalCreator:parsePage : end parse page: ' + pageID);
 			callback();
@@ -282,8 +298,3 @@ module.exports.createSchedule = function(callback) {
 		loadPages(parseUsers, callback);
 	}
 }
-
-
-
-
-

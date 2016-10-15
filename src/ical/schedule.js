@@ -1,6 +1,6 @@
 var schedule = require('node-schedule')
 
-var gcal = require('./icalCreator')
+var gcal = require('./ical_creator')
 
 // start scheduler
 gcal.createSchedule();

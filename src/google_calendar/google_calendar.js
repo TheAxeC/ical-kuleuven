@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var google = require('googleapis');
+var ical = require('ical');
 
 var config = require('./config');
 var authorize = require('./authorize');
@@ -20,7 +21,7 @@ function sendEvents(user, calendar) {
 		// Authorize a client with the loaded credentials, then call the
 		// Google Calendar API.
 		authorize.authorize(JSON.parse(content), function(auth) {
-			prepareNewCalendar(user, calendar, auth);
+			HandleAllEvents(user, calendar, auth);
 		});
 	});
 }
@@ -41,25 +42,6 @@ function registerToken() {
 function createSchedule() {
 	let icalCreator = require('../ical/icalCreator');
 	icalCreator.createSchedule(sendEvents);
-}
-
-function prepareNewCalendar(user, calendar, auth) {
-	console.log('Deleting all events');
-	deleteAllEvents(user, auth, function() {
-		console.log('Adding all events');
-		addAllEvents(user, calendar, auth);
-	});
-}
-
-function addAllEvents(user, calendar, auth) {
-	let events = calendar.events();
-	let i = 0;
-	console.log('Adding ' + events.length + ' items');
-	for(let event of events) {
-		let delay = i * 300;
-		setTimeout(eventTimeout(user, event, auth, addEvent), delay);
-		i += 1;
-	}
 }
 
 function eventTimeout(user, event, auth, func) {
@@ -93,8 +75,9 @@ function addEvent(user, event, auth) {
 	});
 }
 
-function deleteAllEvents(user, auth, callback) {
+function HandleAllEvents(user, calendar_user, auth, callback) {
 	let calendar = google.calendar('v3');
+	console.log('Listing all events');
 	calendar.events.list({
 		auth: auth,
 		calendarId: config.CALENDAR_ID[user],
@@ -107,13 +90,26 @@ function deleteAllEvents(user, auth, callback) {
 			return;
 		}
 		let events = response.items;
-		console.log('Deleting ' + events.length + ' items');
-		for (let i = 0; i < events.length; i++) {
-			let event = events[i];
+
+		let oldEvents = loadEventsFromFile(user);
+
+		let deleteEvents = getEventsToDelete(events, oldEvents, calendar_user.events());
+		let addEvents = getEventsToAdd(events, oldEvents, calendar_user.events());
+
+		console.log("Need to delete: " + deleteEvents.length);
+		console.log("Need to add: " + addEvents.length);
+
+		let i = 0;
+		for (let event of deleteEvents) {
 			let delay = i * 300;
 			setTimeout(eventTimeout(user, event, auth, deleteEvent), delay);
+			i += 1;
 		}
-		setTimeout(callback, (events.length+10)*300);
+		for(let event of addEvents) {
+			let delay = i * 300;
+			setTimeout(eventTimeout(user, event, auth, addEvent), delay);
+			i += 1;
+		}
 	});
 }
 
@@ -131,8 +127,83 @@ function deleteEvent(user, event, auth) {
 	});
 }
 
+function loadEventsFromFile(user) {
+	let dir = __dirname + '/../../icals/';
+	let data = ical.parseFile(dir + user + '-old.ics');
+	let ret = [];
+	for (var k in data){
+		if (data.hasOwnProperty(k)) {
+			try {
+				let elem = {};
+				let ev = data[k];
+				elem['summary'] = ev.summary;
+				elem['location'] = ev.location;
+				elem['description'] = ev.description;
+				elem['start'] = ev.start;
+				elem['end'] = ev.end;
+				if (elem['start'])
+					ret.push(elem);
+			} catch(err) {}
+		}
+	}
+	return ret;
+}
+
+function compareGoogleAndEvent(ev1, ev2) {
+	return ev1.summary == ev2.summary
+			&& ev1.location == ev2.location
+			&& ev1.description == ev2.description
+			&& (new Date(ev1.start.dateTime)).getTime() == (new Date(ev2.start)).getTime()
+			&& (new Date(ev1.end.dateTime)).getTime() == (new Date(ev2.end)).getTime();
+}
+
+function getEventsToDelete(google, old, newEvents) {
+	// events in old and google, but not in new
+	let ret = [];
+	for(var ev_g of google) {
+		let rem = false;
+		for(var ev_o of old) {
+			if (compareGoogleAndEvent(ev_g, ev_o)) {
+				rem = true;
+				break;
+			}
+		}
+		if (rem) {
+			for(var ev_n of newEvents) {
+				let json = ev_n.toJSON();
+				if (compareGoogleAndEvent(ev_g, json)) {
+					rem = false;
+					break;
+				}
+			}
+		}
+
+		if (rem) {
+			ret.push(ev_g);
+		}
+	}
+	return ret;
+}
+
+function getEventsToAdd(google, old, newEvents) {
+	// events in new, but not in old and google
+	let ret = [];
+	for(var ev_n of newEvents) {
+		let add = true;
+		let json = ev_n.toJSON();
+		for(var ev_g of google) {
+			if (compareGoogleAndEvent(ev_g, json)) {
+				add = false;
+				break;
+			}
+		}
+		//for(var ev_o of old) {}
+		if (add) {
+			ret.push(ev_n);
+		}
+	}
+	return ret;
+}
+
 module.exports.createSchedule = createSchedule;
 module.exports.registerToken = registerToken;
-
-
-
