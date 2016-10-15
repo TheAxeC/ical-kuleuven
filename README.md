@@ -33,15 +33,15 @@ The following structure is used:
 	'objectid-year-phase-semester' : ['courseID'],
 },
 ```
-'user' is the username that is used to identify the courselist. The created ical file is also named: 'user.ics'.
+`user` is the username that is used to identify the courselist. The created ical file is also named: `user.ics`.
 
-'objectid' is the ID of the bachelor or master program.
+`objectid` is the ID of the bachelor or master program.
 
-'year' is the year from which you want to extract the schedule.
+`year` is the year from which you want to extract the schedule.
 
-'phase' is the phase of the program. Bachelors have 3 phases, most masters have 2 phases.
+`phase` is the phase of the program. Bachelors have 3 phases, most masters have 2 phases.
 
-'semester' is the semester in which the course is given.
+`semester` is the semester in which the course is given.
 
 ### Group list
 
