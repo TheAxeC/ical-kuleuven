@@ -6,11 +6,18 @@ config.group_list = {
 		'H0N06A' : '1McsA', // Modellering van complexe systemen
 		'H0N09A' : '1McsA', // Gedistribueerde systemen
 		'G0Q58a' : 'Group A', // Modellering en simulatie
-		'H00G6A' : 'Group B' // Machine Learning and Inductive Inference
+		'H00G6A' : 'Group B', // Machine Learning and Inductive Inference
+		'G0Q58A' : 'Group A', // Modellering en simulatie
+		'H0S00A' : '1McsA', // Software architecture
+		'H01L2A' : 'McwsBinfB' // Digitale elektronica en processoren
 	},
 	'luuk' : {
 		'H0N06A' : '1McsA', // Modellering van complexe systemen
-		'H00G6A' : 'Group B' // Machine Learning and Inductive Inference
+		'H00G6A' : 'Group B', // Machine Learning and Inductive Inference
+		'H0S00A' : '1McsA', // Software architecture
+		'H00I2A' : 'Group B', // Multi-agent systems
+		'H00I0A' : 'Group B', // Data Mining
+		'H01L2A' : 'McwsBinfA' // Digitale elektronica en processoren
 	}
 };
 
@@ -35,8 +42,7 @@ config.users = {
 								'H02B3A', 'H00G2A' // Neural computing
 							],
 		'51016880-2016-1-2' : [
-								'H08M0A', 'H08M1A', // Brain-computer interfaces
-								'H02H6A' // Bio-informatics
+								'H08M0A', 'H08M1A' // Brain-computer interfaces
 							],
 		'52364422-2016-1-1' : [
 								'H0N05A', 'H0N06A', 'H0N07A', // Modelling of Complex Systems

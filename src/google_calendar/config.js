@@ -4,7 +4,7 @@ var TOKEN_PATH = TOKEN_DIR + 'token.json';
 var CLIENT_SECRET = TOKEN_DIR + 'client_secret.json';
 
 var CALENDAR_ID = {
-	'axel' : 'e85mdc3g53pe15aki2tehibv5o@group.calendar.google.com'
+	'axel' : '06b28slu8qk1t3o4iodbabrjvk@group.calendar.google.com'
 }
 
 module.exports.SCOPES = SCOPES;
