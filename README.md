@@ -29,9 +29,11 @@ In order to run the `google_calendar.js` script, the following are required:
 ### Course list
 The following structure is used:
 ```
-'user' : {
-	'objectid-year-phase-semester' : ['courseID'],
-},
+config.users = {
+	'user' : {
+		'objectid-year-phase-semester' : ['courseID'],
+	},
+}
 ```
 `user` is the username that is used to identify the courselist. The created ical file is also named: `user.ics`.
 
@@ -44,6 +46,16 @@ The following structure is used:
 `semester` is the semester in which the course is given.
 
 ### Group list
+The group list is used to define which events should/should not be included in the ical calendar.
+The structure is as following:
+```
+config.group_list = {
+	'user' : {
+		'courseID' : 'filter',
+	},
+};
+```
+The filter is applied to all events related to `courseID`. Events that do not match with the filter are not included in the ical calendar. Currently regular expressions are NOT supported.
 
 ## Google calendar integration
 Google calendar can be used with this application. The application syncs with the google calendar checks which events are outdated or need to be newly added and makes those changes.
