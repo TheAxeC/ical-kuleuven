@@ -66,35 +66,56 @@ function requestPage(url, params, callback) {
         timeout: 100000
     });
 
-	horseman
-	.open(url)
-	.status()
-	.evaluate(function() { Laden(); })
-	.waitForNextPage()
-	.click('a[href="javascript:semester()"]')
-	.waitForNextPage()
-	.evaluate(function() { Laden(); })
-	.waitForNextPage()
-	.evaluate(function() { document.continueform.submit(); })
-	.waitForNextPage();
-
 	if (params.split('-')[3] != '1') {
-		horseman.click('a[href="javascript:semester(\'' + params.split('-')[3] + '\');"]')
+		horseman
+		.open(url)
+		.status()
+		.evaluate(function() { Laden(); })
+		.waitForNextPage()
+		.click('a[href="javascript:semester()"]')
+		.waitForNextPage()
+		.evaluate(function() { Laden(); })
+		.waitForNextPage()
+		.evaluate(function() { document.continueform.submit(); })
+		.waitForNextPage();
+		.click('a[href="javascript:semester(\'' + params.split('-')[3] + '\');"]')
 		.waitForNextPage()
 		.evaluate(function() { Laden(); })
 		.waitForNextPage()
 		.evaluate(function() { document.continueform.submit(); })
 		.waitForNextPage()
+		.html()
+		.then(function (page) {
+			// We retrieved the page correctly
+			// Now we need to parse the page
+			console.log('icalCreator:requestPage:horseman : loaded page through HTTP');
+			//parsePage(page, courses);
+			writeFile(__dirname + '/../../html/' + params, page);
+			callback(page);
+		}).close();
+	} else {
+		horseman
+		.open(url)
+		.status()
+		.evaluate(function() { Laden(); })
+		.waitForNextPage()
+		.click('a[href="javascript:semester()"]')
+		.waitForNextPage()
+		.evaluate(function() { Laden(); })
+		.waitForNextPage()
+		.evaluate(function() { document.continueform.submit(); })
+		.waitForNextPage();
+		.html()
+		.then(function (page) {
+			// We retrieved the page correctly
+			// Now we need to parse the page
+			console.log('icalCreator:requestPage:horseman : loaded page through HTTP');
+			//parsePage(page, courses);
+			writeFile(__dirname + '/../../html/' + params, page);
+			callback(page);
+		}).close();
 	}
-	horseman.html()
-	.then(function (page) {
-		// We retrieved the page correctly
-		// Now we need to parse the page
-		console.log('icalCreator:requestPage:horseman : loaded page through HTTP');
-		//parsePage(page, courses);
-		writeFile(__dirname + '/../../html/' + params, page);
-		callback(page);
-	}).close();
+
 }
 
 function canUseFile(params) {
