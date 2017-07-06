@@ -76,14 +76,17 @@ function requestPage(url, params, callback) {
 	.evaluate(function() { Laden(); })
 	.waitForNextPage()
 	.evaluate(function() { document.continueform.submit(); })
-	.waitForNextPage()
-	.click('a[href="javascript:semester(\'' + params.split('-')[3] + '\');"]')
-	.waitForNextPage()
-	.evaluate(function() { Laden(); })
-	.waitForNextPage()
-	.evaluate(function() { document.continueform.submit(); })
-	.waitForNextPage()
-	.html()
+	.waitForNextPage();
+
+	if (params.split('-')[3] != '1') {
+		horseman.click('a[href="javascript:semester(\'' + params.split('-')[3] + '\');"]')
+		.waitForNextPage()
+		.evaluate(function() { Laden(); })
+		.waitForNextPage()
+		.evaluate(function() { document.continueform.submit(); })
+		.waitForNextPage()
+	}
+	horseman.html()
 	.then(function (page) {
 		// We retrieved the page correctly
 		// Now we need to parse the page
