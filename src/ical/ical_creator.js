@@ -77,7 +77,7 @@ function requestPage(url, params, callback) {
 		.evaluate(function() { Laden(); })
 		.waitForNextPage()
 		.evaluate(function() { document.continueform.submit(); })
-		.waitForNextPage();
+		.waitForNextPage()
 		.click('a[href="javascript:semester(\'' + params.split('-')[3] + '\');"]')
 		.waitForNextPage()
 		.evaluate(function() { Laden(); })
@@ -104,7 +104,7 @@ function requestPage(url, params, callback) {
 		.evaluate(function() { Laden(); })
 		.waitForNextPage()
 		.evaluate(function() { document.continueform.submit(); })
-		.waitForNextPage();
+		.waitForNextPage()
 		.html()
 		.then(function (page) {
 			// We retrieved the page correctly
