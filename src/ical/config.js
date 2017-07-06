@@ -41,14 +41,10 @@ config.users = {
 								'H02D5a', // Philosophy of Mind and Artificial Intelligence
 								'H00G8a', 'H02C4a', // Artificial Neural Networks
 								'H00H3a', 'H02D3a' // Support Vector Machines: Methods and Applications
-							]//,
-		// '52364422-2017-1-1' : [
-		// 						'H0N05A', 'H0N06A', 'H0N07A', // Modelling of Complex Systems
-		// 						'H0N08A', 'H0N09A', 'H0N10A' // Distributed Systems
-		// 					],
-		// '52364422-2017-1-2' : [
-		// 						'H07Z9A', 'H0S00A' // Software Architecture
-		// 					]
+							],
+		'52364422-2017-1-2' : [
+								'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
+							]
 	}//,
 	// 'luuk' : {
 	// 	'51230411-2016-1-1' : [
