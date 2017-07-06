@@ -66,7 +66,7 @@ function requestPage(url, params, callback) {
         timeout: 100000
     });
 
-	if (params.split('-')[3] != '1') {
+	if (params.split('-')[3] != config.urrent_semester) {
 		horseman
 		.open(url)
 		.status()
