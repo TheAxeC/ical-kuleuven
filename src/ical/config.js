@@ -1,5 +1,7 @@
 var config = {}
 
+config.current_semester = '1';
+
 config.group_list = {
 	'axel' : {
 		'H00H2A' : 'Group A', // Uncertainty in Artificial Intelligence
