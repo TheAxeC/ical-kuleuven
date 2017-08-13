@@ -36,6 +36,21 @@ config.users = {
 								'H00G8a', 'H02C4a', // Artificial Neural Networks
 								'H00H3a', 'H02D3a' // Support Vector Machines: Methods and Applications
 							]
+	},
+	'luuk' : {
+		'51230411-2017-2-1' : [
+								'H04L5a', 'H04L6a', 'H09P6a' // Vergelijkende studie van imperatieve programmeertalen
+                'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
+              ],
+		'51230411-2017-2-2' : [
+								'H04I0A', 'H04J1A', //internet infrastructure
+                'G0K31B', //gedistribueerde software archituren: verdiepende studie
+                'H04G7A' // Capita Selecta Computer Science: Distributed Systems
+              ],
+    '51230411-2017-1-1' : [
+                'G0B34A', 'G0B35A', 'H00Y8A', 'H00Y9A', //knowledge and the web
+                'H00K1A', 'H03K2A' //Engineering Economy
+    ]
 	}
 };
 
