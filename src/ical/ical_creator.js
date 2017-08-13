@@ -13,7 +13,7 @@ function loadPages(parsingCallback, callback) {
 	console.log('icalCreator:loadPages : loading all pages');
 	let pages = getPagesList();
 	//console.log('icalCreator:loadPages : page list: ' + JSON.stringify(pages));
-	requestHandler(pages, parsingCallback, {}, callback);
+	getPagesList(pages, parsingCallback, {}, callback);
 }
 
 // Requesthandler: load each url in a synchronous way
@@ -23,7 +23,7 @@ function requestHandler(urls, parsingCallback, htmlMap, callback) {
 		parsingCallback(htmlMap, callback);
 	} else {
 		let firstKey = Object.keys(urls)[0];
-		requestPage(urls[firstKey], firstKey, function(html) {
+		requestPage(firstKey, urls[firstKey], firstKey, function(html) {
 			htmlMap[firstKey] = html;
 			delete urls[firstKey];
 			requestHandler(urls, parsingCallback, htmlMap, callback);
@@ -51,8 +51,8 @@ function getPagesList() {
 
 
 // Using node-horseman and phantomjs to load a page
-function requestPage(url, params, callback) {
-	console.log('icalCreator:requestPage : requesting page ' + url);
+function requestPage(key, url, params, callback) {
+	console.log('icalCreator:requestPage : key ' + key + ' : requesting page ' + url);
 
 	if (canUseFile(params)) {
 		console.log('icalCreator:requestPage:horseman : loaded page through FILE');

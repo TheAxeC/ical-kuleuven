@@ -39,7 +39,7 @@ config.users = {
 	},
 	'luuk' : {
 		'51230411-2017-2-1' : [
-								'H04L5a', 'H04L6a', 'H09P6a' // Vergelijkende studie van imperatieve programmeertalen
+								'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
                 'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
               ],
 		'51230411-2017-2-2' : [
