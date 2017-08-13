@@ -66,7 +66,7 @@ function requestPage(key, url, params, callback) {
         timeout: 100000
     });
 
-	if (params.split('-')[3] != config.urrent_semester) {
+	if (params.split('-')[3] != config.current_semester) {
 		console.log('icalCreator:requestPage:horseman : not current semester');
 		horseman
 		.open(url)
