@@ -13,7 +13,7 @@ function loadPages(parsingCallback, callback) {
 	console.log('icalCreator:loadPages : loading all pages');
 	let pages = getPagesList();
 	//console.log('icalCreator:loadPages : page list: ' + JSON.stringify(pages));
-	getPagesList(pages, parsingCallback, {}, callback);
+	requestHandler(pages, parsingCallback, {}, callback);
 }
 
 // Requesthandler: load each url in a synchronous way
