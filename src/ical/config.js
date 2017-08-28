@@ -45,10 +45,12 @@ config.users = {
 		'51230411-2017-2-2' : [
 								'H04I0A', 'H04J1A', //internet infrastructure
                 'G0K31B', //gedistribueerde software archituren: verdiepende studie
-                'H04G7A' // Capita Selecta Computer Science: Distributed Systems
+                'H04G7A', // Capita Selecta Computer Science: Distributed Systems
+								'H04G4A', 'H04G5A', 'H04G6A' //Security of Network and Computer infrastructure
               ],
     '51230411-2017-1-1' : [
-                'G0B34A', 'G0B35A', 'H00Y8A', 'H00Y9A', //knowledge and the web
+                // 'G0B34A', 'G0B35A', 'H00Y8A', 'H00Y9A', //knowledge and the web
+								'G0K32A', //vereisten analyse
                 'H00K1A', 'H03K2A' //Engineering Economy
     ]
 	}
