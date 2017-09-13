@@ -18,11 +18,11 @@ config.group_list = {
 config.users = {
 	'axel' : {
 		'51230411-2017-2-1' : [
-								'H00H1a', 'H02D1a', 'H08M3a', // Genetic Algorithms and Evolutionary Computing
-								'H00K2a', 'H03K3a', // Management and Information Technology
+								'S0B88a', // Genderstudies
 								'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
 								'H03F0a', 'H0T45a', // Technisch-wetenschappelijke software
 								'H03F9a', 'H03G0a', // Parallel Computing
+								'H00H1a', 'H02D1a', 'H08M3a', // Genetic Algorithms and Evolutionary Computing
 								'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
 							],
 		'51230411-2017-1-2' : [
