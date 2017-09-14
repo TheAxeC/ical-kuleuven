@@ -187,6 +187,7 @@ function parseUsers(htmlMap, callback) {
 // Parse a single user
 function parseSingleUser(user, courses, htmlMap, callback) {
 	let len = Object.keys(courses).length;
+	console.log();
 	console.log('icalCreator:parseSingleUser : Parsing user "' + user + '" ' + len);
 
 	let calender = ical({
