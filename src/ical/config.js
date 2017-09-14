@@ -68,7 +68,7 @@ config.users = {
         '51230411-2017-1-2' : [
                                 'H01L1A', 'H01L2A', // Digitale elektronica en processoren
                                 // 'H00I0A', 'H02C6A', 'HMI08B',// Data Mining
-                                'H00I2A', 'H02H4A', 'H08M2A' // Multi-Agent Sytems
+                                'H00I2A', 'H02H4A', 'H08M2A', // Multi-Agent Sytems
                                 'H04I0A', 'H04J1A', // Internet infrastructure
                                 'G0K31B', // Gedistribueerde software architecturen: verdiepende studie
                                 'H04G7A', // Capita Selecta Computer Science: Distributed Systems
