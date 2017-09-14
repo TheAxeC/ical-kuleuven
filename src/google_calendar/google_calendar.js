@@ -7,15 +7,15 @@ var ical = require('ical');
 var config = require('./config');
 var authorize = require('./authorize');
 
-function sendEvents(user, calendar) {
+function contactGoogleCalendar(user, calendar) {
 	if (!(user in config.CALENDAR_ID)) {
-		console.log('User: ' + user + ' does not have a CALENDAR_ID');
+		console.log('google_calendar:contactGoogleCalendar : User: ' + user + ' does not have a CALENDAR_ID');
 		return;
 	}
 	// Load client secrets from a local file.
 	fs.readFile(config.CLIENT_SECRET, function(err, content) {
 		if (err) {
-			console.log('Error loading client secret file: ' + err);
+			console.log('google_calendar:contactGoogleCalendar : Error loading client secret file: ' + err);
 			return;
 		}
 		// Authorize a client with the loaded credentials, then call the
@@ -30,7 +30,7 @@ function registerToken() {
 	// Load client secrets from a local file.
 	fs.readFile(config.CLIENT_SECRET, function(err, content) {
 		if (err) {
-			console.log('Error loading client secret file: ' + err);
+			console.log('google_calendar:registerToken : Error loading client secret file: ' + err);
 			return;
 		}
 		// Authorize a client with the loaded credentials, then call the
@@ -41,7 +41,7 @@ function registerToken() {
 
 function createSchedule() {
 	let icalCreator = require('../ical/ical_creator');
-	icalCreator.createSchedule(sendEvents);
+	icalCreator.createSchedule(contactGoogleCalendar);
 }
 
 function eventTimeout(user, event, auth, func) {
@@ -69,7 +69,7 @@ function addEvent(user, event, auth) {
 		}
 	}, function(err, response) {
 		if (err) {
-			console.log('The API (INSERT) returned an error: ' + err);
+			console.log('google_calendar:addEvent : The API (INSERT) returned an error: ' + err);
 			return;
 		}
 	});
@@ -77,7 +77,6 @@ function addEvent(user, event, auth) {
 
 function HandleAllEvents(user, calendar_user, auth, callback) {
 	let calendar = google.calendar('v3');
-	console.log('Listing all events');
 	calendar.events.list({
 		auth: auth,
 		calendarId: config.CALENDAR_ID[user],
@@ -86,7 +85,7 @@ function HandleAllEvents(user, calendar_user, auth, callback) {
 		maxResults: 1000
 	}, function(err, response) {
 		if (err) {
-			console.log('The API (LIST EVENTS) returned an error: ' + err);
+			console.log('google_calendar:HandleAllEvents : The API (LIST EVENTS) returned an error: ' + err);
 			return;
 		}
 		let events = response.items;
@@ -96,8 +95,8 @@ function HandleAllEvents(user, calendar_user, auth, callback) {
 		let deleteEvents = getEventsToDelete(events, oldEvents, calendar_user.events());
 		let addEvents = getEventsToAdd(events, oldEvents, calendar_user.events());
 
-		console.log("Need to delete: " + deleteEvents.length);
-		console.log("Need to add: " + addEvents.length);
+		console.log("google_calendar:HandleAllEvents : " + user + " needs to delete: " + deleteEvents.length);
+		console.log("google_calendar:HandleAllEvents : " + user + " needs to add: " + addEvents.length);
 
 		let i = 0;
 		for (let event of deleteEvents) {
@@ -110,6 +109,8 @@ function HandleAllEvents(user, calendar_user, auth, callback) {
 			setTimeout(eventTimeout(user, event, auth, addEvent), delay);
 			i += 1;
 		}
+
+		console.log("google_calendar:HandleAllEvents : " + user + " all events handled");
 	});
 }
 
@@ -121,7 +122,7 @@ function deleteEvent(user, event, auth) {
 		eventId: event.id
 	}, function(err, response) {
 		if (err) {
-			console.log('The API (DELETE) returned an error: ' + err);
+			console.log('google_calendar:deleteEvent : The API (DELETE) returned an error: ' + err);
 			return;
 		}
 	});
