@@ -28,6 +28,9 @@ config.users = {
 		'51230411-2017-1-2' : [
 								'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
 							],
+		'52364422-2017-1-2' : [
+ 								'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
+  						],
 		'51016880-2017-1-1' : [
 								'H00I6a', 'H00I7a', 'H02A0a', 'H02K1a' // 	Fundamentals of Artificial Intelligence
 							],
@@ -42,6 +45,9 @@ config.users = {
 								'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
                 'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
               ],
+		'52364422-2017-1-2' : [
+ 								'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
+  						],
 		'51230411-2017-2-2' : [
 								'H04I0A', 'H04J1A', //internet infrastructure
                 'G0K31B', //gedistribueerde software archituren: verdiepende studie
@@ -59,6 +65,9 @@ config.users = {
 								'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
 								'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
 							],
+		'52364422-2017-1-2' : [
+ 								'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
+  						],
     '51230411-2017-1-1' : [
                 'H01F2A', 'H01F3A', // Bedrijfskunde & Entrepreneurship
                 'G0Q57a', 'G0Q58a', // Modellering en simulatie
