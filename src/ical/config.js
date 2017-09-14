@@ -53,7 +53,28 @@ config.users = {
 								'G0K32A', //vereisten analyse
                 'H00K1A', 'H03K2A' //Engineering Economy
     ]
-	}
+	},
+	'vincent' : {
+        '51230411-2017-1-1' : [
+                                'H01F2A', 'H01F3A', // Bedrijfskunde & Entrepreneurship
+                                'G0Q57a', 'G0Q58a', // Modellering en simulatie
+                                'G0B23A', 'G0B24A', 'G0B25A', //Modellering van complexe systemen
+                                'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
+                                'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
+                            ],
+        '52364422-2017-1-1' : [
+                                'H0N05a', 'H0N06a', 'H0N07a', // Modelling of complex systems
+        ],
+        '51230411-2017-1-2' : [
+                                'H01L1A', 'H01L2A', // Digitale elektronica en processoren
+                                // 'H00I0A', 'H02C6A', 'HMI08B',// Data Mining
+                                'H00I2A', 'H02H4A', 'H08M2A' // Multi-Agent Sytems
+                                'H04I0A', 'H04J1A', // Internet infrastructure
+                                'G0K31B', // Gedistribueerde software architecturen: verdiepende studie
+                                'H04G7A', // Capita Selecta Computer Science: Distributed Systems
+                                'H04G4A', 'H04G5A', 'H04G6A' //Security of Network and Computer infrastructure
+                            ]
+    }
 };
 
 module.exports = config
