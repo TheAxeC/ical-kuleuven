@@ -7,6 +7,7 @@ var ical = require('ical');
 var config = require('./config');
 var authorize = require('./authorize');
 
+// Main function
 function contactGoogleCalendar(user, calendar) {
 	if (!(user in config.CALENDAR_ID)) {
 		console.log('google_calendar:contactGoogleCalendar : User: ' + user + ' does not have a CALENDAR_ID');
@@ -26,6 +27,7 @@ function contactGoogleCalendar(user, calendar) {
 	});
 }
 
+// Register a google calendar user
 function registerToken() {
 	// Load client secrets from a local file.
 	fs.readFile(config.CLIENT_SECRET, function(err, content) {
@@ -39,42 +41,14 @@ function registerToken() {
 	});
 }
 
-function createSchedule() {
-	let icalCreator = require('../ical/ical_creator');
-	icalCreator.createSchedule(contactGoogleCalendar);
-}
-
+// Event timeout function
 function eventTimeout(user, event, auth, func) {
 	return function() {
 		func(user, event, auth);
 	}
 }
 
-function addEvent(user, event, auth) {
-	let json = event.toJSON();
-	let calendar = google.calendar('v3');
-	calendar.events.insert({
-		auth: auth,
-		calendarId: config.CALENDAR_ID[user],
-		resource: {
-			'summary': json.summary,
-			'location': json.location,
-			'description': json.description,
-			'start': {
-				'dateTime': json.start,
-			},
-			'end': {
-				'dateTime': json.end,
-			}
-		}
-	}, function(err, response) {
-		if (err) {
-			console.log('google_calendar:addEvent : The API (INSERT) returned an error: ' + err);
-			return;
-		}
-	});
-}
-
+// Handle all events (for a single user)
 function HandleAllEvents(user, calendar_user, auth, callback) {
 	let calendar = google.calendar('v3');
 	calendar.events.list({
@@ -114,6 +88,34 @@ function HandleAllEvents(user, calendar_user, auth, callback) {
 	});
 }
 
+
+// Add an event
+function addEvent(user, event, auth) {
+	let json = event.toJSON();
+	let calendar = google.calendar('v3');
+	calendar.events.insert({
+		auth: auth,
+		calendarId: config.CALENDAR_ID[user],
+		resource: {
+			'summary': json.summary,
+			'location': json.location,
+			'description': json.description,
+			'start': {
+				'dateTime': json.start,
+			},
+			'end': {
+				'dateTime': json.end,
+			}
+		}
+	}, function(err, response) {
+		if (err) {
+			console.log('google_calendar:addEvent : The API (INSERT) returned an error: ' + err);
+			return;
+		}
+	});
+}
+
+// Delete an event from google calendar
 function deleteEvent(user, event, auth) {
 	let calendar = google.calendar('v3');
 	calendar.events.delete({
@@ -128,6 +130,7 @@ function deleteEvent(user, event, auth) {
 	});
 }
 
+// Load events from (old) ics file
 function loadEventsFromFile(user) {
 	let dir = __dirname + '/../../icals/';
 	let data = ical.parseFile(dir + user + '-old.ics');
@@ -150,6 +153,7 @@ function loadEventsFromFile(user) {
 	return ret;
 }
 
+// Compare events
 function compareGoogleAndEvent(ev1, ev2) {
 	return ev1.summary == ev2.summary
 			&& ev1.location == ev2.location
@@ -158,6 +162,7 @@ function compareGoogleAndEvent(ev1, ev2) {
 			&& (new Date(ev1.end.dateTime)).getTime() == (new Date(ev2.end)).getTime();
 }
 
+// Get all events that need to be deleted
 function getEventsToDelete(google, old, newEvents) {
 	// events in old and google, but not in new
 	let ret = [];
@@ -186,6 +191,7 @@ function getEventsToDelete(google, old, newEvents) {
 	return ret;
 }
 
+// Get all events that need to be added
 function getEventsToAdd(google, old, newEvents) {
 	// events in new, but not in old and google
 	let ret = [];
@@ -204,6 +210,11 @@ function getEventsToAdd(google, old, newEvents) {
 		}
 	}
 	return ret;
+}
+
+function createSchedule() {
+	let icalCreator = require('../ical/ical_creator');
+	icalCreator.createSchedule(contactGoogleCalendar);
 }
 
 module.exports.createSchedule = createSchedule;

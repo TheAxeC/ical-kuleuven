@@ -120,6 +120,7 @@ function requestPage(key, url, params, callback) {
 
 }
 
+// Check if a file exists and whether it is not too old (1 day)
 function canUseFile(params) {
 	let dir = __dirname + '/../../html/';
 	let filename = getFileName(dir + params);
@@ -137,6 +138,7 @@ function canUseFile(params) {
 	return endTime > now;
 }
 
+// rename file to old
 function renameFile(user) {
 	let dir = __dirname + '/../../icals/';
 	let filename = dir + user + '.ics';
@@ -150,11 +152,13 @@ function renameFile(user) {
 	fs.renameSync(dir + user + '.ics', dir + user + '-old.ics');
 }
 
+// Write data to file
 function writeFile(params, data) {
 	let url = getFileName(params);
 	return fs.writeFileSync(url, data);
 }
 
+// read a file and call a callback
 function readFile(filename, callback) {
 	fs.readFile(filename, 'utf8', function (err,data) {
 		if (err) {
@@ -164,10 +168,12 @@ function readFile(filename, callback) {
 	});
 }
 
+// get a html file name
 function getFileName(params) {
 	return params + '.html';
 }
 
+// Parse all users
 function parseUsers(htmlMap, callback) {
 	console.log();
 	console.log('icalCreator:parseUsers : Parsing all users');
@@ -178,6 +184,7 @@ function parseUsers(htmlMap, callback) {
 	}
 }
 
+// Parse a single user
 function parseSingleUser(user, courses, htmlMap, callback) {
 	let len = Object.keys(courses).length;
 	console.log('icalCreator:parseSingleUser : Parsing user "' + user + '" ' + len);
@@ -222,6 +229,7 @@ function parseHandler(user, keys, htmlMap, courses, calender, parsingCallback) {
 	}
 }
 
+// Parse html page
 function parsePage(user, pageID, page, courses, calender, callback) {
 	console.log('icalCreator:parsePage : starting to parse page: ' + pageID);
 
@@ -254,6 +262,7 @@ function parsePage(user, pageID, page, courses, calender, callback) {
 	});
 }
 
+// Parse a single event
 function parseSingle(user, c, year, courseID, calender, window) {
 	// a -> td -> tr -> tbody -> table
 	let table = courseID.parent().parent().parent().parent();
@@ -304,6 +313,7 @@ function parseSingle(user, c, year, courseID, calender, window) {
 	}
 }
 
+// Check if an event is allowed using the config.group_list
 function allowEvent(user, courseID, eventName) {
 	courseID = courseID.toUpperCase();
 	if (user in config.group_list) {
@@ -317,6 +327,7 @@ function allowEvent(user, courseID, eventName) {
 	return true;
 }
 
+// Main function
 module.exports.createSchedule = function(callback) {
 	console.log('-----------------------------------------------------------------------');
 	console.log(new Date());

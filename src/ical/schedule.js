@@ -1,5 +1,6 @@
-var schedule = require('node-schedule')
+// Schedule a pass daily
 
+var schedule = require('node-schedule')
 var gcal = require('./ical_creator')
 
 // start scheduler
