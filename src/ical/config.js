@@ -91,6 +91,34 @@ config.users = {
 						'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
 						'H04G7A', // Capita Selecta Computer Science: Distributed Systems
 					],
+	},
+	'emiel' : {
+		'51230411-2017-1-1' : [
+						'G0B23A', 'G0B24A', 'G0B25A', //Modellering van complexe systemen
+						],
+		'52364422-2017-1-1' : [
+						'H0N05a', 'H0N06a', 'H0N07a', // Modelling of complex systems
+						],
+		'51230411-2017-1-2' : [
+						'H01L1A', 'H01L2A', // Digitale elektronica en processoren
+
+						],
+
+		'51230411-2017-2-1' : [
+						'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
+						'G0L15B'  // Capita Selecta van de software engineering
+												],
+		'52364422-2017-2-1' : [
+						'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
+						'H0A12a', // Geavanceerde methodes voor software architectuur
+						'H04K5a','H04K6a' // Development of Secure Software
+										],
+
+		'51230411-2017-2-2' : [
+						'G0K31B', // Gedistribueerde software architecturen: verdiepende studie
+						'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
+						'G0L15B', // Capita Selecta van de software engineering
+					],
 	}
 };
 
