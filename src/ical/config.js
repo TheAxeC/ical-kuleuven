@@ -28,7 +28,7 @@ config.users = {
 		'51016880-2017-1-1' : [
 								'H00I6a', 'H00I7a', 'H02A0a', 'H02K1a', // 	Fundamentals of Artificial Intelligence
 								'H00G1A', 'H02B2A', // Cognitive Science
-								'H02C8A', // Cybernetics and its Applications in Physiology and Biological Sciences
+								'H02H5A', // Cybernetics and its Applications in Physiology and Biological Sciences
 							],
 		'51016880-2017-1-2' : [
 								//'H02D5a', // Philosophy of Mind and Artificial Intelligence
