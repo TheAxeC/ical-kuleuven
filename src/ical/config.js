@@ -4,7 +4,7 @@ config.current_semester = '1';
 
 config.group_list = {
 	'axel' : {
-		//'H00I7a' : 'Exclude', 
+		//'H00I7a' : 'Exclude',
 		//'H02K1a' : 'Exclude',
 	}
 };
@@ -14,8 +14,8 @@ config.users = {
 		'51230411-2017-2-1' : [
 								'S0B88a', // Genderstudies
 								'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
-								'H03F0a', 'H0T45a', // Technisch-wetenschappelijke software
-								'H03F9a', 'H03G0a', // Parallel Computing
+								//'H03F0a', 'H0T45a', // Technisch-wetenschappelijke software
+								//'H03F9a', 'H03G0a', // Parallel Computing
 								//'H00H1a', 'H02D1a', 'H08M3a', // Genetic Algorithms and Evolutionary Computing
 								'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
 							],
@@ -27,12 +27,14 @@ config.users = {
   						],
 		'51016880-2017-1-1' : [
 								'H00I6a', 'H00I7a', 'H02A0a', 'H02K1a', // 	Fundamentals of Artificial Intelligence
-								'H00G1A', 'H02B2A' // Cognitive Science
+								'H00G1A', 'H02B2A', // Cognitive Science
+								'H02C8A', // Cybernetics and its Applications in Physiology and Biological Sciences
 							],
 		'51016880-2017-1-2' : [
 								//'H02D5a', // Philosophy of Mind and Artificial Intelligence
 								'H00G8a', 'H02C4a', // Artificial Neural Networks
-								'H00H3a', 'H02D3a' // Support Vector Machines: Methods and Applications
+								'H00H3a', 'H02D3a', // Support Vector Machines: Methods and Applications
+								'H00G9a', 'H02C8A', // Text based Information Retrieval
 							],
 		'51016867-2017-2-1' : [
 								'H05M9A', 'H05N1A' // Bio-informatica
