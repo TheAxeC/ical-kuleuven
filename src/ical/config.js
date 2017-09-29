@@ -40,7 +40,7 @@ config.users = {
 								'H05M9A', 'H05N1A' // Bio-informatica
 		],
 		'51518550-2017-2-1' : [
-								'H03E1B' // System Identification and Modelling
+								'H03E1a' // System Identification and Modelling
 		]
 	},
 	'luuk' : {
