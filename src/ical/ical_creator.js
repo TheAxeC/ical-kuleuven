@@ -283,7 +283,7 @@ function parseSingle(user, c, year, courseID, calender, window) {
 	let name = window.$(siblings[3]).text().trim();
 	let prof = window.$(siblings[4]).text().trim();
 
-	if (!allowEvent(user, c, name.toUpperCase())) {
+	if (!allowEvent(user, c, name) {
 		return;
 	}
 
@@ -330,7 +330,7 @@ function allowEvent(user, courseID, eventName) {
 			// return eventName.includes(user_group_list[courseID])
 			let course_list = user_group_list[courseID];
 			for(let i=0; i<course_list.length; i++) {
-				if (eventName.includes(course_list[i].toUpperCase())) {
+				if (eventName.includes(course_list[i])) {
 					return true;
 				}
 			}
