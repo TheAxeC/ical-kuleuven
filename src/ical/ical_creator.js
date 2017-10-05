@@ -283,7 +283,7 @@ function parseSingle(user, c, year, courseID, calender, window) {
 	let name = window.$(siblings[3]).text().trim();
 	let prof = window.$(siblings[4]).text().trim();
 
-	if (!allowEvent(user, c, name) {
+	if (!allowEvent(user, c, name)) {
 		return;
 	}
 
