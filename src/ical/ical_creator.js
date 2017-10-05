@@ -321,18 +321,29 @@ function allowEvent(user, courseID, eventName) {
 		//console.log('User found in group list')
 		let user_group_list = config.group_list[user];
 		if (courseID in user_group_list) {
-			let course_list = user_group_list[courseID];
-			for(let i=0; i<course_list.length; i++) {
-				if (eventName.includes(course_list[i].toUpperCase())) {
-					return true;
-				}
-			}
 			//console.log('CourseID found in User group list')
-			return false;
+			return eventName.includes(user_group_list[courseID])
 		}
 	}
 	return true;
 }
+// courseID = courseID.toUpperCase();
+// if (user in config.group_list) {
+// 	//console.log('User found in group list')
+// 	let user_group_list = config.group_list[user];
+// 	if (courseID in user_group_list) {
+// 		let course_list = user_group_list[courseID];
+// 		for(let i=0; i<course_list.length; i++) {
+// 			if (eventName.includes(course_list[i].toUpperCase())) {
+// 				return true;
+// 			}
+// 		}
+// 		//console.log('CourseID found in User group list')
+// 		return false;
+// 	}
+// }
+// return true;
+// }
 
 // Main function
 module.exports.createSchedule = function(callback) {
