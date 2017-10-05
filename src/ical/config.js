@@ -6,6 +6,9 @@ config.group_list = {
 	'axel' : {
 		//'H00I7a' : 'Exclude',
 		//'H02K1a' : 'Exclude',
+	},
+	'vincent' : {
+		'H0N06a' : '1MscB', '1MscC+Mti' // Modelling of Complex Systems
 	}
 };
 
