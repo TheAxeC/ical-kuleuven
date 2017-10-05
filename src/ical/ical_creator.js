@@ -323,8 +323,9 @@ function allowEvent(user, courseID, eventName) {
 		if (courseID in user_group_list) {
 			let course_list = user_group_list[courseID]
 			for(let i=0; i<course_list.length; i++) {
-				if eventName.includes(course_list[i])
+				if (eventName.includes(course_list[i])) {
 					return true
+				}
 			}
 			//console.log('CourseID found in User group list')
 			return false
