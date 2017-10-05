@@ -321,8 +321,13 @@ function allowEvent(user, courseID, eventName) {
 		//console.log('User found in group list')
 		let user_group_list = config.group_list[user];
 		if (courseID in user_group_list) {
+			let course_list = user_group_list[courseID]
+			for(let i=0; i<course_list.length; i++) {
+				if eventName.includes(course_list[i])
+					return true
+			}
 			//console.log('CourseID found in User group list')
-			return eventName.includes(user_group_list[courseID])
+			return false
 		}
 	}
 	return true;
