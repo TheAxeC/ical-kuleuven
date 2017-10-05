@@ -4,7 +4,7 @@ config.current_semester = '1';
 
 config.group_list = {
 	'vincent' : {
-		'H0N06a' : '1MscB' // Modelling of Complex Systems
+		'H0N06a' : ['1MscB', '1MscC+Mti'] // Modelling of Complex Systems
 	}
 };
 

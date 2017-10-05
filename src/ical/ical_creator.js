@@ -107,6 +107,12 @@ function requestPage(key, url, params, callback) {
 		.waitForNextPage()
 		.evaluate(function() { document.continueform.submit(); })
 		.waitForNextPage()
+		.click('a[href="javascript:semester(\'' + params.split('-')[3] + '\');"]')
+		.waitForNextPage()
+		.evaluate(function() { Laden(); })
+		.waitForNextPage()
+		.evaluate(function() { document.continueform.submit(); })
+		.waitForNextPage()
 		.html()
 		.then(function (page) {
 			// We retrieved the page correctly
@@ -277,7 +283,7 @@ function parseSingle(user, c, year, courseID, calender, window) {
 	let name = window.$(siblings[3]).text().trim();
 	let prof = window.$(siblings[4]).text().trim();
 
-	if (!allowEvent(user, c, name)) {
+	if (!allowEvent(user, c, name..toUpperCase())) {
 		return;
 	}
 
@@ -321,29 +327,19 @@ function allowEvent(user, courseID, eventName) {
 		//console.log('User found in group list')
 		let user_group_list = config.group_list[user];
 		if (courseID in user_group_list) {
+			// return eventName.includes(user_group_list[courseID])
+			let course_list = user_group_list[courseID];
+			for(let i=0; i<course_list.length; i++) {
+				if (eventName.includes(course_list[i].toUpperCase())) {
+					return true;
+				}
+			}
 			//console.log('CourseID found in User group list')
-			return eventName.includes(user_group_list[courseID])
+			return false;
 		}
 	}
 	return true;
 }
-// courseID = courseID.toUpperCase();
-// if (user in config.group_list) {
-// 	//console.log('User found in group list')
-// 	let user_group_list = config.group_list[user];
-// 	if (courseID in user_group_list) {
-// 		let course_list = user_group_list[courseID];
-// 		for(let i=0; i<course_list.length; i++) {
-// 			if (eventName.includes(course_list[i].toUpperCase())) {
-// 				return true;
-// 			}
-// 		}
-// 		//console.log('CourseID found in User group list')
-// 		return false;
-// 	}
-// }
-// return true;
-// }
 
 // Main function
 module.exports.createSchedule = function(callback) {
