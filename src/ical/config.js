@@ -71,7 +71,7 @@ config.users = {
 						'H00K1A', 'H03K2A' // Engineering Economy
 						],
 		'52364422-2017-1-1' : [
-						'H0N05a', 'H0N06a', 'H0N07a', // Modelling of complex systems
+						'H0N05a', 'H0N06A', 'H0N07a', // Modelling of complex systems
 						],
 		'51230411-2017-1-2' : [
 						'H01L1A', 'H01L2A', // Digitale elektronica en processoren
