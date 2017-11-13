@@ -53,7 +53,7 @@ config.users = {
   						],
 		'51230411-2017-2-2' : [
 								'H04I0A', 'H04J1A', //internet infrastructure
-                'G0K31B', //gedistribueerde software archituren: verdiepende studie
+                'G0K31A', //gedistribueerde software archituren: verdiepende studie
                 'H04G7A', // Capita Selecta Computer Science: Distributed Systems
 								'H04G4A', 'H04G5A', 'H04G6A' //Security of Network and Computer infrastructure
               ],
@@ -90,7 +90,7 @@ config.users = {
 
 		'51230411-2017-2-2' : [
 						'H04I0A', 'H04J1A', // Internet infrastructure
-						'G0K31B', // Gedistribueerde software architecturen: verdiepende studie
+						'G0K31A', // Gedistribueerde software architecturen: verdiepende studie
 						'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
 						'H04G7A', // Capita Selecta Computer Science: Distributed Systems
 					],
@@ -118,7 +118,7 @@ config.users = {
 										],
 
 		'51230411-2017-2-2' : [
-						'G0K31B', // Gedistribueerde software architecturen: verdiepende studie
+						'G0K31A', // Gedistribueerde software architecturen: verdiepende studie
 						'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
 						'G0L15A', // Capita Selecta van de software engineering
 					],
