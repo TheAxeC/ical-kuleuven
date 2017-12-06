@@ -21,6 +21,7 @@ config.users = {
 								'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
 							],
 		'51230411-2017-1-2' : [
+								'S0B88a', // Genderstudies
 								'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
 							],
 		'52364422-2017-2-1' : [
