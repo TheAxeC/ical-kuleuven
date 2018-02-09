@@ -1,6 +1,6 @@
 var config = {}
 
-config.current_semester = '1';
+config.current_semester = '0';
 
 config.group_list = {
 	'axel' : {
@@ -123,6 +123,24 @@ config.users = {
 						'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
 						'G0L15A', // Capita Selecta van de software engineering
 					],
+	},
+	'efkee' : {
+		'51230411-2017-2-1' : [
+							'H04L5a', 'H04L6a', 'H09P6a', 'H0S01A', 'H0S02A', 'H0S03A', // Vergelijkende studie van imperatieve programmeertalen //
+							'H04G7A'  // Capita Selecta Computer Science: Distributed Systems //
+						],
+		'51230411-2017-2-2' : [
+							'H04I0A', 'H04J1A', //internet infrastructure //
+							'G0K31A', //gedistribueerde software archituren: verdiepende studie //
+							'H04G7A', // Capita Selecta Computer Science: Distributed Systems //
+							'H04G4A', 'H04G5A', 'H04G6A' //Security of Network and Computer infrastructure //
+						],
+		'51230411-2017-1-1' : [
+
+							'G0Q55a','G0Q56a', //fundamenten van Mens-Machine Interactie //
+							'H02C1A', 'H02C1A', // machine learning and inductive inference //
+							'H00K1A', 'H03K2A' //Engineering Economy //
+						]
 	}
 };
 
