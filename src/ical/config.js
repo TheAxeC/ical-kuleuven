@@ -9,7 +9,9 @@ config.group_list = {
 		'H0S02A' : ['2McsA']
 	},
 	'vincent' : {
-		'H0N06A' : ['1McsB', '1McsC+Mti'] // Modelling of Complex Systems
+		'H0N06A' : ['1McsB', '1McsC+Mti'], // Modelling of Complex Systems,
+		'H00I2A' : ['Group B'], // Multi-Agent Systems,
+		'H01L2A' : ['McwsBinfA'] // Digitale Elektronica en Processoren
 	}
 };
 
