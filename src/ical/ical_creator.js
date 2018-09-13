@@ -107,12 +107,12 @@ function requestPage(key, url, params, callback) {
 		.waitForNextPage()
 		.evaluate(function() { document.continueform.submit(); })
 		.waitForNextPage()
-		.click('a[href="javascript:semester(\'' + params.split('-')[3] + '\');"]')
-		.waitForNextPage()
-		.evaluate(function() { Laden(); })
-		.waitForNextPage()
-		.evaluate(function() { document.continueform.submit(); })
-		.waitForNextPage()
+		// .click('a[href="javascript:semester(\'' + params.split('-')[3] + '\');"]')
+		// .waitForNextPage()
+		// .evaluate(function() { Laden(); })
+		// .waitForNextPage()
+		// .evaluate(function() { document.continueform.submit(); })
+		// .waitForNextPage()
 		.html()
 		.then(function (page) {
 			// We retrieved the page correctly

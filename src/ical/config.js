@@ -1,250 +1,93 @@
-// var config = {}
-
-// config.current_semester = '0';
-
-// config.group_list = {
-// 	'axel' : {
-// 		'H02K1A' : ['Group C'],
-// 		'H00I7A' : ['Group A'],
-// 		'H0S02A' : ['2McsA']
-// 	},
-// 	'vincent' : {
-// 		'H0N06A' : ['1McsB', '1McsC+Mti'], // Modelling of Complex Systems,
-// 		'H00I2A' : ['Group B'], // Multi-Agent Systems,
-// 		'H01L2A' : ['McwsBinfA'] // Digitale Elektronica en Processoren
-// 	}
-// };
-
-// config.users = {
-// 	'axel' : {
-// 		'51230411-2017-2-1' : [
-// 								'S0B88a', // Genderstudies
-// 								'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
-// 								'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
-// 							],
-// 		'51230411-2017-1-2' : [
-// 								'S0B88a', // Genderstudies
-// 								'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
-// 							],
-// 		'52364422-2017-2-1' : [
-//  								'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
-//   						],
-// 		'51016880-2017-1-1' : [
-// 								'H00I6a', 'H00I7a', 'H02A0a', 'H02K1a', // 	Fundamentals of Artificial Intelligence
-// 								'H00G1A', 'H02B2A', // Cognitive Science
-// 								'H02H5A', // Cybernetics and its Applications in Physiology and Biological Sciences
-// 							],
-// 		'51016880-2017-1-2' : [
-// 								'H00G8a', 'H02C4a', // Artificial Neural Networks
-// 								'H00H3a', 'H02D3a', // Support Vector Machines: Methods and Applications
-// 								'H00G9a', 'H02C8A', // Text based Information Retrieval
-// 							],
-// 		'51016867-2017-2-1' : [
-// 								'H05M9A', 'H05N1A' // Bio-informatica
-// 		],
-// 		'51518550-2017-2-1' : [
-// 								'H03E1a' // System Identification and Modelling
-// 		]
-// 	},
-// 	'luuk' : {
-// 		'51230411-2017-2-1' : [
-// 								'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
-//                 'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
-//               ],
-// 		'52364422-2017-2-1' : [
-//  								'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
-//   						],
-// 		'51230411-2017-2-2' : [
-// 								'H04I0A', 'H04J1A', //internet infrastructure
-//                 'G0K31A', //gedistribueerde software archituren: verdiepende studie
-//                 'H04G7A', // Capita Selecta Computer Science: Distributed Systems
-// 								'H04G4A', 'H04G5A', 'H04G6A' //Security of Network and Computer infrastructure
-//               ],
-//     '51230411-2017-1-1' : [
-//                 // 'G0B34A', 'G0B35A', 'H00Y8A', 'H00Y9A', //knowledge and the web
-// 								'G0K32A', //vereisten analyse
-//                 'H00K1A', 'H03K2A' //Engineering Economy
-//     ]
-// 	},
-// 	'vincent' : {
-// 		'51230411-2017-1-1' : [
-// 						'H01F2A', 'H01F3A', // Bedrijfskunde & Entrepreneurship
-// 						'G0Q57a', 'G0Q58a', // Modellering en simulatie
-// 						'G0B23A', 'G0B24A', 'G0B25A', //Modellering van complexe systemen
-// 						'G0K32A', // Vereisten analyse
-// 						'H00K1A', 'H03K2A' // Engineering Economy
-// 						],
-// 		'52364422-2017-1-1' : [
-// 						'H0N05a', 'H0N06A', 'H0N07a', // Modelling of complex systems
-// 						],
-// 		'51230411-2017-1-2' : [
-// 						'H01L1A', 'H01L2A', // Digitale elektronica en processoren
-// 						// 'H00I0A', 'H02C6A', 'HMI08B',// Data Mining
-// 						'H00I2A', 'H02H4A', 'H08M2A', // Multi-Agent Sytems
-// 						],
-
-// 		'51230411-2017-2-1' : [
-// 						'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
-// 						'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
-// 												],
-// 		'52364422-2017-2-1' : [
-// 						'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
-// 										],
-
-// 		'51230411-2017-2-2' : [
-// 						'H04I0A', 'H04J1A', // Internet infrastructure
-// 						'G0K31A', // Gedistribueerde software architecturen: verdiepende studie
-// 						'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
-// 						'H04G7A', // Capita Selecta Computer Science: Distributed Systems
-// 					],
-// 	},
-// 	'emiel' : {
-// 		'51230411-2017-1-1' : [
-// 						'G0B23A', 'G0B24A', 'G0B25A', //Modellering van complexe systemen
-// 						],
-// 		'52364422-2017-1-1' : [
-// 						'H0N05a', 'H0N06a', 'H0N07a', // Modelling of complex systems
-// 						],
-// 		'51230411-2017-1-2' : [
-// 						'H01L1A', 'H01L2A', // Digitale elektronica en processoren
-
-// 						],
-
-// 		'51230411-2017-2-1' : [
-// 						'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
-// 						'G0L15A'  // Capita Selecta van de software engineering
-// 												],
-// 		'52364422-2017-2-1' : [
-// 						'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
-// 						'H0A12a', // Geavanceerde methodes voor software architectuur
-// 						'H04K5a','H04K6a' // Development of Secure Software
-// 										],
-
-// 		'51230411-2017-2-2' : [
-// 						'G0K31A', // Gedistribueerde software architecturen: verdiepende studie
-// 						'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
-// 						'G0L15A', // Capita Selecta van de software engineering
-// 					],
-// 	},
-// 	'efkee' : {
-// 		'51230411-2017-2-1' : [
-// 							'H04L5a', 'H04L6a', 'H09P6a', 'H0S01A', 'H0S02A', 'H0S03A', // Vergelijkende studie van imperatieve programmeertalen //
-// 							'H04G7A'  // Capita Selecta Computer Science: Distributed Systems //
-// 						],
-// 		'51230411-2017-2-2' : [
-// 							'H04I0A', 'H04J1A', //internet infrastructure //
-// 							'G0K31A', //gedistribueerde software archituren: verdiepende studie //
-// 							'H04G7A', // Capita Selecta Computer Science: Distributed Systems //
-// 							'H04G4A', 'H04G5A', 'H04G6A' //Security of Network and Computer infrastructure //
-// 						],
-// 		'51230411-2017-1-1' : [
-
-// 							'G0Q55a','G0Q56a', //fundamenten van Mens-Machine Interactie //
-// 							'H02C1A', 'H02C1A', // machine learning and inductive inference //
-// 							'H00K1A', 'H03K2A' //Engineering Economy //
-// 						]
-// 	}
-// };
-
-// module.exports = config
-
 var config = {}
 
 config.current_semester = '1';
 
 config.group_list = {
-	'axel' : {
-		'H02K1A' : ['Group C'],
-		'H00I7A' : ['Group A'],
-		'H0S02A' : ['2McsA']
-	},
 	'vincent' : {
-		// 'H0N06A' : ['1McsB', '1McsC+Mti'] // Modelling of Complex Systems,
-		// 'H00I2A' : ['Group B'] // Multi-Agent Systems,
 		'H01L2A' : ['McwsBinfA'] // Digitale Elektronica en Processoren
 	}
 };
 
 config.users = {
-	'axel' : {
-		'51230411-2017-2-1' : [
-								'S0B88a', // Genderstudies
-								'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
-								'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
-							],
-		'51230411-2017-1-2' : [
-								'S0B88a', // Genderstudies
-								'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
-							],
-		'52364422-2017-2-1' : [
- 								'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
-  						],
-		'51016880-2017-1-1' : [
-								'H00I6a', 'H00I7a', 'H02A0a', 'H02K1a', // 	Fundamentals of Artificial Intelligence
-								'H00G1A', 'H02B2A', // Cognitive Science
-								'H02H5A', // Cybernetics and its Applications in Physiology and Biological Sciences
-							],
-		'51016880-2017-1-2' : [
-								'H00G8a', 'H02C4a', // Artificial Neural Networks
-								'H00H3a', 'H02D3a', // Support Vector Machines: Methods and Applications
-								'H00G9a', 'H02C8A', // Text based Information Retrieval
-							],
-		'51016867-2017-2-1' : [
-								'H05M9A', 'H05N1A' // Bio-informatica
-		],
-		'51518550-2017-2-1' : [
-								'H03E1a' // System Identification and Modelling
-		]
-	},
-	'luuk' : {
-		'51230411-2017-2-1' : [
-								'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
-                'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
-              ],
-		'52364422-2017-2-1' : [
- 								'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
-  						],
-		'51230411-2017-2-2' : [
-								'H04I0A', 'H04J1A', //internet infrastructure
-                'G0K31A', //gedistribueerde software archituren: verdiepende studie
-                'H04G7A', // Capita Selecta Computer Science: Distributed Systems
-								'H04G4A', 'H04G5A', 'H04G6A' //Security of Network and Computer infrastructure
-              ],
-    '51230411-2017-1-1' : [
-                // 'G0B34A', 'G0B35A', 'H00Y8A', 'H00Y9A', //knowledge and the web
-								'G0K32A', //vereisten analyse
-                'H00K1A', 'H03K2A' //Engineering Economy
-    ]
-	},
+	// 'axel' : {
+	// 	'51230411-2017-2-1' : [
+	// 							'S0B88a', // Genderstudies
+	// 							'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
+	// 							'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
+	// 						],
+	// 	'51230411-2017-1-2' : [
+	// 							'S0B88a', // Genderstudies
+	// 							'H05N0a' // Capita Selecta Computer Science: Artificial Intelligence
+	// 						],
+	// 	'52364422-2017-2-1' : [
+ 	// 							'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
+  	// 					],
+	// 	'51016880-2017-1-1' : [
+	// 							'H00I6a', 'H00I7a', 'H02A0a', 'H02K1a', // 	Fundamentals of Artificial Intelligence
+	// 							'H00G1A', 'H02B2A', // Cognitive Science
+	// 							'H02H5A', // Cybernetics and its Applications in Physiology and Biological Sciences
+	// 						],
+	// 	'51016880-2017-1-2' : [
+	// 							'H00G8a', 'H02C4a', // Artificial Neural Networks
+	// 							'H00H3a', 'H02D3a', // Support Vector Machines: Methods and Applications
+	// 							'H00G9a', 'H02C8A', // Text based Information Retrieval
+	// 						],
+	// 	'51016867-2017-2-1' : [
+	// 							'H05M9A', 'H05N1A' // Bio-informatica
+	// 	],
+	// 	'51518550-2017-2-1' : [
+	// 							'H03E1a' // System Identification and Modelling
+	// 	]
+	// },
+	// 'luuk' : {
+	// 	'51230411-2017-2-1' : [
+	// 							'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
+    //             'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
+    //           ],
+	// 	'52364422-2017-2-1' : [
+ 	// 							'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
+  	// 					],
+	// 	'51230411-2017-2-2' : [
+	// 							'H04I0A', 'H04J1A', //internet infrastructure
+    //             'G0K31A', //gedistribueerde software archituren: verdiepende studie
+    //             'H04G7A', // Capita Selecta Computer Science: Distributed Systems
+	// 							'H04G4A', 'H04G5A', 'H04G6A' //Security of Network and Computer infrastructure
+    //           ],
+    // '51230411-2017-1-1' : [
+    //             // 'G0B34A', 'G0B35A', 'H00Y8A', 'H00Y9A', //knowledge and the web
+	// 							'G0K32A', //vereisten analyse
+    //             'H00K1A', 'H03K2A' //Engineering Economy
+    // ]
+	// },
 	'vincent' : {
-		'51230411-2017-1-1' : [
-						'H01F2A', 'H01F3A', // Bedrijfskunde & Entrepreneurship
-						'G0Q57a', 'G0Q58a', // Modellering en simulatie
-						'G0B23A', 'G0B24A', 'G0B25A', //Modellering van complexe systemen
-						'G0K32A', // Vereisten analyse
-						'H00K1A', 'H03K2A' // Engineering Economy
-						],
-		'52364422-2017-1-1' : [
-						'H0N05a', 'H0N06A', 'H0N07a', // Modelling of complex systems
-						],
-		'51230411-2017-1-2' : [
-						'H01L1A', 'H01L2A', // Digitale elektronica en processoren
-						// 'H00I0A', 'H02C6A', 'HMI08B',// Data Mining
-						'H00I2A', 'H02H4A', 'H08M2A', // Multi-Agent Sytems
-						],
-		'51230411-2017-2-1' : [
-						'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
-						'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
-						],
-		'52364422-2017-2-1' : [
-						'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
-						],
-		'51230411-2017-2-2' : [
-						'H04I0A', 'H04J1A', // Internet infrastructure
-						'G0K31A', // Gedistribueerde software architecturen: verdiepende studie
-						'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
-						'H04G7A', // Capita Selecta Computer Science: Distributed Systems
-						],
+		// '51230411-2017-1-1' : [
+		// 				'H01F2A', 'H01F3A', // Bedrijfskunde & Entrepreneurship
+		// 				'G0Q57a', 'G0Q58a', // Modellering en simulatie
+		// 				'G0B23A', 'G0B24A', 'G0B25A', //Modellering van complexe systemen
+		// 				'G0K32A', // Vereisten analyse
+		// 				'H00K1A', 'H03K2A' // Engineering Economy
+		// 				],
+		// '52364422-2017-1-1' : [
+		// 				'H0N05a', 'H0N06A', 'H0N07a', // Modelling of complex systems
+		// 				],
+		// '51230411-2017-1-2' : [
+		// 				'H01L1A', 'H01L2A', // Digitale elektronica en processoren
+		// 				// 'H00I0A', 'H02C6A', 'HMI08B',// Data Mining
+		// 				'H00I2A', 'H02H4A', 'H08M2A', // Multi-Agent Sytems
+		// 				],
+		// '51230411-2017-2-1' : [
+		// 				'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
+		// 				'H04G7A'  // Capita Selecta Computer Science: Distributed Systems
+		// 				],
+		// '52364422-2017-2-1' : [
+		// 				'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
+		// 				],
+		// '51230411-2017-2-2' : [
+		// 				'H04I0A', 'H04J1A', // Internet infrastructure
+		// 				'G0K31A', // Gedistribueerde software architecturen: verdiepende studie
+		// 				'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
+		// 				'H04G7A', // Capita Selecta Computer Science: Distributed Systems
+		// 				],
 
 		'51230411-2018-1-1' : [
 						// 'H01F2A', 'H01F3A', // Bedrijfskunde & Entrepreneurship
@@ -270,34 +113,34 @@ config.users = {
 						],
 		
 	},
-	'emiel' : {
-		'51230411-2017-1-1' : [
-						'G0B23A', 'G0B24A', 'G0B25A', //Modellering van complexe systemen
-						],
-		'52364422-2017-1-1' : [
-						'H0N05a', 'H0N06a', 'H0N07a', // Modelling of complex systems
-						],
-		'51230411-2017-1-2' : [
-						'H01L1A', 'H01L2A', // Digitale elektronica en processoren
+	// 'emiel' : {
+		// '51230411-2017-1-1' : [
+		// 				'G0B23A', 'G0B24A', 'G0B25A', //Modellering van complexe systemen
+		// 				],
+		// '52364422-2017-1-1' : [
+		// 				'H0N05a', 'H0N06a', 'H0N07a', // Modelling of complex systems
+		// 				],
+		// '51230411-2017-1-2' : [
+		// 				'H01L1A', 'H01L2A', // Digitale elektronica en processoren
 
-						],
+		// 				],
 
-		'51230411-2017-2-1' : [
-						'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
-						'G0L15A'  // Capita Selecta van de software engineering
-												],
-		'52364422-2017-2-1' : [
-						'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
-						'H0A12a', // Geavanceerde methodes voor software architectuur
-						'H04K5a','H04K6a' // Development of Secure Software
-										],
+		// '51230411-2017-2-1' : [
+		// 				'H04L5a', 'H04L6a', 'H09P6a', // Vergelijkende studie van imperatieve programmeertalen
+		// 				'G0L15A'  // Capita Selecta van de software engineering
+		// 										],
+		// '52364422-2017-2-1' : [
+		// 				'H0S01a', 'H0S02a', 'H0S03a', // Comparative Programming Languages
+		// 				'H0A12a', // Geavanceerde methodes voor software architectuur
+		// 				'H04K5a','H04K6a' // Development of Secure Software
+		// 								],
 
-		'51230411-2017-2-2' : [
-						'G0K31A', // Gedistribueerde software architecturen: verdiepende studie
-						'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
-						'G0L15A', // Capita Selecta van de software engineering
-					],
-	}
+		// '51230411-2017-2-2' : [
+		// 				'G0K31A', // Gedistribueerde software architecturen: verdiepende studie
+		// 				'H04G4A', 'H04G5A', 'H04G6A', //Security of Network and Computer infrastructure
+		// 				'G0L15A', // Capita Selecta van de software engineering
+		// 			],
+	// }
 };
 
 module.exports = config
